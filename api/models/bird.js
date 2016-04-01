@@ -9,4 +9,6 @@ var Bird = thinky.createModel('Bird', {
   timesSeen: Number
 });
 
+Bird.ensureIndex('orderName');
+
 module.exports = Bird;

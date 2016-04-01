@@ -1,3 +1,8 @@
+var thinky = require('../db/config');
+var r = thinky.r;
+
+var Bird = require('../models/bird');
+
 var birds = [
   {
     "sciName":"Abeillia abeillei",
@@ -22690,3 +22695,15 @@ var birds = [
     "orderName":"Passeriformes"
   }
 ];
+
+function seedBirds (arr) {
+  Bird.delete().run()
+  .then(function(){
+    Bird.save(arr)
+      .then(function() {
+        console.log(arr.length, "birds created");
+      });
+  });
+}
+
+seedBirds(birds);
