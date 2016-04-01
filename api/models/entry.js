@@ -10,6 +10,8 @@ var Entry = thinky.createModel('Entry', {
   remarks: String
 });
 
+Entry.ensureIndex('date');
+
 Entry.belongsTo(Bird, 'bird', 'birdId', 'id');
 
 module.exports = Entry;
