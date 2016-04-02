@@ -1,5 +1,6 @@
 var thinky = require('../db/config');
 var Bird = require('./bird');
+var User = require('./user');
 
 var Entry = thinky.createModel('Entry', {
   id: String,
@@ -12,6 +13,6 @@ var Entry = thinky.createModel('Entry', {
 
 Entry.ensureIndex('date');
 
-Entry.belongsTo(Bird, 'bird', 'birdId', 'id');
+Entry.hasOne(Bird, 'bird', 'birdId', 'id');
 
 module.exports = Entry;

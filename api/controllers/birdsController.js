@@ -12,6 +12,13 @@ var birdsController = {
         res.json(birds);
       });
   },
+  show: function(req, res) {
+    var id = req.params.id;
+    Bird.get(id)
+      .then(function(bird) {
+        res.json(bird);
+      });
+  },
   create: function(req, res) {
     var newBird = req.body;
     console.log(newBird);

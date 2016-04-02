@@ -6,7 +6,7 @@ var Entry = require('../models/entry');
 var usersController = {
   all: function(req, res) {
     console.log('indexing');
-    User.orderBy({ index: r.asc('date')})
+    User.orderBy({ index: r.asc('date')}).getJoin({entries:true})
       .run()
       .then(function(users){
         res.json(users);
@@ -14,7 +14,7 @@ var usersController = {
   },
   show: function(req, res) {
     var id = req.params.id;
-    User.get(id)
+    User.get(id).getJoin({entries:true})
       .then(function(user) {
         res.json(user);
       });
@@ -28,21 +28,24 @@ var usersController = {
       });
   },
   update: function(req, res) {
-    var id = req.user;
-    var updatedUser = req.body;
-    User.get(id)
+    console.log('updating');
+    var id = req.params.id;
+    User.get(id).getJoin({entries:true}).run()
       .then(function(user) {
-        user.save(updatedUser).run()
+        if (req.body.username) user.username = req.body.username;
+        if (req.body.avatarImage) user.avatarImage = req.body.avatarImage;
+        if (req.body.aboutMe) user.aboutMe = req.body.aboutMe;
+        user.saveAll()
           .then(function(updUser) {
             res.json(updUser);
           });
       });
   },
   delete: function(req, res) {
-    var id = req.user;
-    User.get(id)
+    var id = req.params.id;
+    User.get(id).getJoin({entries:true}).run()
       .then(function(user){
-        user.delete().run()
+        user.deleteAll({entries:true})
           .then(function(delUser) {
             res.json(delUser);
           });
