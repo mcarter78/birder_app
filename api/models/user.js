@@ -5,8 +5,7 @@ var r = thinky.r;
 
 var User = thinky.createModel('User', {
   id: String,
-  username: String,
-  passwordDigest: String,
+  name: String,
   avatarImage: String,
   aboutMe: String,
   date: { _type: Date, default: r.now() },

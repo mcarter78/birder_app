@@ -97,3 +97,9 @@ label {
 #main {
   border: 1px solid #777;
 }
+
+.profile-picture {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
