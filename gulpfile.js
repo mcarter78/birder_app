@@ -5,7 +5,7 @@ var source = require('vinyl-source-stream');
 
 gulp.task('build', function () {
   browserify({
-    entries: 'app/index.jsx',
+    entries: 'app/app.jsx',
     extensions: ['.jsx'],
     debug: true
   })

@@ -46,3 +46,42 @@
 2016-04-01T15:25:30.844492000 2.248004s info: Table 058e5f50-1c2c-4c7b-8bcc-3c73877bfaeb: Starting a new Raft election for term 2.
 2016-04-01T15:25:30.853168000 2.256681s info: Table e115db59-5d53-49cb-886d-c3bd5f316a54: This server is Raft leader for term 2. Latest log index is 4.
 2016-04-01T15:25:30.859660000 2.263172s info: Table 058e5f50-1c2c-4c7b-8bcc-3c73877bfaeb: This server is Raft leader for term 2. Latest log index is 4.
+2016-04-03T10:57:10.514023000 0.482280s notice: Running rethinkdb 2.2.6 (CLANG 7.3.0 (clang-703.0.29))...
+2016-04-03T10:57:10.532433000 0.500686s notice: Running on Darwin 15.4.0 x86_64
+2016-04-03T10:57:10.532506000 0.500759s notice: Loading data from directory /Users/matthewcarter/dev/birds/rethinkdb_data
+2016-04-03T10:57:10.599751000 0.568002s info: Automatically using cache size of 100 MB
+2016-04-03T10:57:10.599761000 0.568013s warn: Cache size is very low and may impact performance.
+2016-04-03T10:57:10.603413000 0.571665s notice: Listening for intracluster connections on port 29015
+2016-04-03T10:57:10.689587000 0.657879s notice: Listening for client driver connections on port 28015
+2016-04-03T10:57:10.689868000 0.658160s notice: Listening for administrative HTTP connections on port 8080
+2016-04-03T10:57:10.689871000 0.658163s notice: Listening on addresses: 127.0.0.1, ::1
+2016-04-03T10:57:10.689873000 0.658165s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-04-03T10:57:10.690025000 0.658317s notice: Server ready, "Matthews_MacBook_Pro_2_local_f05" 9c6beea3-eaa1-4361-a3b1-f8fc535ca385
+2016-04-03T10:57:12.052103000 2.020490s info: Table 058e5f50-1c2c-4c7b-8bcc-3c73877bfaeb: Starting a new Raft election for term 3.
+2016-04-03T10:57:12.066888000 2.035275s info: Table 058e5f50-1c2c-4c7b-8bcc-3c73877bfaeb: This server is Raft leader for term 3. Latest log index is 7.
+2016-04-03T10:57:12.131089000 2.099476s info: Table e115db59-5d53-49cb-886d-c3bd5f316a54: Starting a new Raft election for term 3.
+2016-04-03T10:57:12.131147000 2.099534s info: Table 2a0eb2a1-c376-4e44-8955-e212a7139f1e: Starting a new Raft election for term 3.
+2016-04-03T10:57:12.139216000 2.107603s info: Table e115db59-5d53-49cb-886d-c3bd5f316a54: This server is Raft leader for term 3. Latest log index is 7.
+2016-04-03T10:57:12.144597000 2.112984s info: Table 2a0eb2a1-c376-4e44-8955-e212a7139f1e: This server is Raft leader for term 3. Latest log index is 8.
+2016-04-03T16:17:47.470863000 8256.648560s notice: Server got SIGTERM from pid 9667, uid 501; shutting down...
+2016-04-03T16:17:47.471088000 8256.648784s notice: Shutting down client connections...
+2016-04-03T16:17:47.475821000 8256.653517s notice: All client connections closed.
+2016-04-03T16:17:47.475940000 8256.653636s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2016-04-03T16:17:47.499899000 8256.677622s notice: Storage engine shut down.
+2016-04-03T16:17:47.513045000 8256.690742s error: Failed to shutdown worker process: 'failed to send job function to worker'.  Killing it.
+2016-04-03T16:17:49.863198000 0.006163s notice: Running rethinkdb 2.2.6 (CLANG 7.3.0 (clang-703.0.29))...
+2016-04-03T16:17:49.868690000 0.011651s notice: Running on Darwin 15.4.0 x86_64
+2016-04-03T16:17:49.868764000 0.011723s notice: Loading data from directory /Users/matthewcarter/dev/birds/rethinkdb_data
+2016-04-03T16:17:49.905233000 0.048193s info: Automatically using cache size of 723 MB
+2016-04-03T16:17:49.906334000 0.049293s notice: Listening for intracluster connections on port 29015
+2016-04-03T16:17:49.971327000 0.114287s notice: Listening for client driver connections on port 28015
+2016-04-03T16:17:49.971643000 0.114603s notice: Listening for administrative HTTP connections on port 8080
+2016-04-03T16:17:49.971646000 0.114605s notice: Listening on addresses: 127.0.0.1, ::1
+2016-04-03T16:17:49.971648000 0.114607s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-04-03T16:17:49.971648001 0.114608s notice: Server ready, "Matthews_MacBook_Pro_2_local_f05" 9c6beea3-eaa1-4361-a3b1-f8fc535ca385
+2016-04-03T16:17:51.008972000 1.151986s info: Table 2a0eb2a1-c376-4e44-8955-e212a7139f1e: Starting a new Raft election for term 4.
+2016-04-03T16:17:51.030739000 1.173754s info: Table 2a0eb2a1-c376-4e44-8955-e212a7139f1e: This server is Raft leader for term 4. Latest log index is 11.
+2016-04-03T16:17:51.679595000 1.822665s info: Table e115db59-5d53-49cb-886d-c3bd5f316a54: Starting a new Raft election for term 4.
+2016-04-03T16:17:51.688542000 1.831612s info: Table e115db59-5d53-49cb-886d-c3bd5f316a54: This server is Raft leader for term 4. Latest log index is 10.
+2016-04-03T16:17:51.789640000 1.932710s info: Table 058e5f50-1c2c-4c7b-8bcc-3c73877bfaeb: Starting a new Raft election for term 4.
+2016-04-03T16:17:51.800684000 1.943754s info: Table 058e5f50-1c2c-4c7b-8bcc-3c73877bfaeb: This server is Raft leader for term 4. Latest log index is 10.
