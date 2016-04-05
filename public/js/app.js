@@ -1,4 +1,4 @@
-angular.module('birdy', ['ui.router', 'auth0', 'angular-storage', 'angular-jwt'])
+angular.module('birdy', ['ui.router', 'auth0', 'angular-storage', 'angular-jwt', 'autocomplete'])
        .controller('LoginController', LoginController)
        .controller('LogoutController', LogoutController)
        .controller('BirdsController', BirdsController)
@@ -71,6 +71,13 @@ function birdyConfig(authProvider, jwtInterceptorProvider, $httpProvider, $state
       controller: 'ProfileController',
       controllerAs: 'profile',
       templateUrl: '/templates/profile.html',
+      data: { requiresLogin: true }
+    })
+    .state('new-entry', {
+      url: '/entries/new',
+      controller: 'EntriesController',
+      controllerAs: 'entries',
+      templateUrl: '/templates/add-entry.html',
       data: { requiresLogin: true }
     });
 
