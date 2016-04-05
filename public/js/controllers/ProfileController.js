@@ -2,6 +2,8 @@ function ProfileController($http) {
   var vm = this;
   vm.user = JSON.parse(window.localStorage.profile);
   vm.currentUser = {};
+  vm.confirmedUser = {};
+  vm.updatedUser = {};
   vm.currentUser.name = vm.user.name;
   vm.currentUser.email = vm.user.email;
   vm.currentUser.identities = vm.user.identities;
@@ -15,6 +17,7 @@ function ProfileController($http) {
           if (vm.user.name === user.name) {
             console.log('user already exists');
             matches += 1;
+            vm.confirmedUser = user;
           }
         });
         if (matches <= 0) {
@@ -26,6 +29,15 @@ function ProfileController($http) {
     $http.post('/api/users', user)
       .then(function(res) {
         console.log('user created');
+        vm.confirmedUser = res.data;
+      });
+  };
+  vm.updateAboutMe = function() {
+    vm.confirmedUser.aboutMe = vm.updatedUser.aboutMe;
+    $http.patch('/api/users/' + vm.confirmedUser.id, vm.updatedUser)
+      .then(function(res) {
+        console.log('user AboutMe updated');
+        vm.updatedUser = {};
       });
   };
 }

@@ -1,3 +1,9 @@
 <div ng-init="profile.checkProfile()" ng-cloak>
-  <h3>Welcome {{profile.user.name}} <img class="profile-picture" ng-src="{{profile.user.picture}}"></h3>
+  <h3>Welcome {{profile.confirmedUser.name}} <img class="profile-picture" ng-src="{{profile.confirmedUser.picture}}"></h3>
+  <h4>Entries: {{profile.confirmedUser.entries.length}}</h4>
+  <h4 ng-hide="showMe">About Me: {{profile.confirmedUser.aboutMe}}<span ng-click="showMe=true" class="glyphicon glyphicon-pencil"></span></h4>
+  <form ng-show="showMe" class="form-group" ng-submit="profile.updateAboutMe()">
+      <h4>About Me:<input type="text" ng-model="profile.updatedUser.aboutMe" placeholder="{{profile.confirmedUser.aboutMe}}">
+      <button ng-click="showMe=false" class="btn" type="submit">Submit</button></h4>
+  </form>
 </div>

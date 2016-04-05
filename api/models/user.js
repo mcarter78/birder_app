@@ -6,7 +6,8 @@ var r = thinky.r;
 var User = thinky.createModel('User', {
   id: String,
   name: String,
-  avatarImage: String,
+  email: String,
+  picture: String,
   aboutMe: String,
   date: { _type: Date, default: r.now() },
   entries: { _type: Array, default: []}
