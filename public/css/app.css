@@ -1,8 +1,8 @@
 body {
   font-family: "proxima-nova", sans-serif;
   text-align: center;
-  font-size: 300%;
   font-weight: 100;
+  color: #777;
 }
 input[type=checkbox],
 input[type=radio] {
@@ -37,15 +37,14 @@ input[type=radio]:focus + label:before,
 input[type=checkbox]:focus + label:before {
   outline: 0;
 }
+
 .btn:hover {
-  background-color: #44C7F4;
+  background-color: #eee;
 }
 .btn:focus {
   outline: none !important;
 }
-.btn.btn-lg {
-  padding: 20px 30px;
-}
+
 .btn:disabled {
   background-color: #333;
   color: #666;
@@ -63,11 +62,7 @@ h3 {
   font-weight: 100;
   margin: 100px 0;
 }
-h2 {
-  margin-top: 30px;
-  margin-bottom: 40px;
-  font-size: 200%;
-}
+
 label {
   font-size: 100%;
   font-weight: 300;
@@ -86,12 +81,63 @@ label {
   padding: 100px 0;
 }
 
-#main {
-  border: 1px solid #777;
+#profile-div {
+  display: inline-block;
+  width: 80%;
+}
+
+#profile-left {
+  margin-right: 10px;
+}
+
+#profile-left,
+#profile-right {
+  display: inline-block;
+  width: 80%;
+  height: 140px;
+  margin-bottom: 30px;
+  border: 3px solid #777;
+  float: left;
+  text-align: left;
+}
+
+#profile-left h4:first-child,
+#profile-right h4:first-child {
+  border-bottom: 3px solid #777;
+}
+
+#profile-left *,
+#profile-right * {
+  padding-left: 5px;
+  padding-bottom: 2px;
 }
 
 .profile-picture {
   height: 60px;
   width: 60px;
   border-radius: 50%;
+}
+
+#show-about-form {
+  float: right;
+  margin-right: 5px;
+  padding-bottom: 5px;
+}
+
+#welcome-message {
+  text-align: left;
+}
+
+#profile-add-entry {
+  float: right;
+  margin-right: 5px;
+  margin-top: -8px;
+}
+
+.btn {
+  border: 3px solid #777
+  border-radius: 0;
+  background: none;
+  font-size: 0.8em;
+  color: #777
 }
