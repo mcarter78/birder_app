@@ -301,6 +301,14 @@ div[title="Show satellite imagery"] {
   margin-top: 10px;
 }
 
+#nav-menu {
+  display: inline-block;
+  position: absolute;
+  right: 10px;
+  top: 64px;
+
+}
+
 /*for larger screens
 
 #map-div {

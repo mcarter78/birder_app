@@ -75,11 +75,14 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi){
                 };
                 $scope.marker = {
                     id:0,
-                    options:{ draggable:true },
-                    coords:{
+                    options: { draggable:true },
+                    coords: {
                         latitude:place[0].geometry.location.lat(),
                         longitude:place[0].geometry.location.lng()
-                    }
+                    },
+                    // events: {
+                    //   dragend: function
+                    // }
                 };
           }
     },
