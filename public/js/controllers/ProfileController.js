@@ -1,4 +1,4 @@
-function ProfileController($http) {
+function ProfileController($http, $state) {
   var vm = this;
   vm.user = JSON.parse(window.localStorage.profile);
   vm.currentUser = {};
@@ -18,10 +18,12 @@ function ProfileController($http) {
             console.log('user already exists');
             matches += 1;
             vm.confirmedUser = user;
+            window.localStorage.currentUser = JSON.stringify(user);
           }
         });
         if (matches <= 0) {
           vm.newProfile(vm.currentUser);
+          vm.checkProfile();
         }
       });
   };
@@ -39,5 +41,9 @@ function ProfileController($http) {
         console.log('user AboutMe updated');
         vm.updatedUser = {};
       });
+  };
+  vm.entryRedirect = function() {
+    console.log('entryRedirect called');
+    $state.go('new-entry');
   };
 }

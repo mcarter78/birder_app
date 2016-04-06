@@ -85,3 +85,6 @@
 2016-04-03T16:17:51.688542000 1.831612s info: Table e115db59-5d53-49cb-886d-c3bd5f316a54: This server is Raft leader for term 4. Latest log index is 10.
 2016-04-03T16:17:51.789640000 1.932710s info: Table 058e5f50-1c2c-4c7b-8bcc-3c73877bfaeb: Starting a new Raft election for term 4.
 2016-04-03T16:17:51.800684000 1.943754s info: Table 058e5f50-1c2c-4c7b-8bcc-3c73877bfaeb: This server is Raft leader for term 4. Latest log index is 10.
+2016-04-05T14:48:53.417845000 69966.934769s notice: Someone asked for the nonwhitelisted file "/docs.css".  If this should be accessible, add it to the static web assets.
+2016-04-05T14:48:53.418067000 69966.934870s notice: Someone asked for the nonwhitelisted file "/docs.css".  If this should be accessible, add it to the static web assets.
+2016-04-05T14:48:53.418199000 69966.935001s notice: Someone asked for the nonwhitelisted file "/docs.css".  If this should be accessible, add it to the static web assets.

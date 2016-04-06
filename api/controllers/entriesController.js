@@ -19,7 +19,7 @@ var entriesController = {
       });
   },
   create: function(req, res) {
-    var id = req.params.id;
+    var id = req.body.userId;
     var newEntry = req.body;
     console.log(newEntry);
     User.get(id)

@@ -97,6 +97,7 @@ function LogoutController($scope, auth, store, $window) {
     auth.signout();
     store.remove('profile');
     store.remove('token');
+    window.localStorage.removeItem('currentUser');
     $window.location.href = 'https://mcarter78.auth0.com/v2/logout?returnTo=http://localhost:3000/';
   };
 }

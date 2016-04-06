@@ -5,6 +5,9 @@ var express = require('express'),
     birdsController = require('../controllers/birdsController'),
     entriesController = require('../controllers/entriesController');
 
+router.route('/getBirdImage')
+  .post(birdsController.getBirdImage);
+
 router.route('/api/birds')
   .get(birdsController.all) // WORKING
   .post(birdsController.create); // WORKING

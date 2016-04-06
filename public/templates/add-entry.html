@@ -1,1 +1,29 @@
-<autocomplete data="data" ng-model="selection" attr-placeholder="Enter Bird Common Name..."></autocomplete>
+<h2>Add Entry:</h2>
+<div class="left-div">
+  <div id="auto-input">
+    <autocomplete
+      attr-input-id="bird-search"
+      data="data"
+      ng-model="selection"
+      attr-placeholder="Enter Bird Common Name..."
+      autofocus>
+    </autocomplete>
+    <button class="btn" ng-click="getBird(); showMe=true">Select</button>
+  </div>
+  <div ng-show="showMe" id="selected-bird">
+    <div id="entry-picture">
+      <img class="profile-picture" src="{{ bird.picture }}">
+    </div>
+    <form ng-submit="addEntry()">
+      <div id="entry-right">
+        <div>
+          Date of Sighting:<input type="date" ng-model="bird.date">
+        </div>
+        <div>
+          Remarks: <input type="text" ng-model="bird.remarks">
+        </div>
+      </div>
+      <button class="button" type="submit">Submit</button>
+    </form>
+  </div>
+</div>

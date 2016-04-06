@@ -1,7 +1,7 @@
 <div ng-init="profile.checkProfile()" ng-cloak>
   <div id="profile-div">
     <h3 id="welcome-message"><img class="profile-picture" ng-src="{{profile.confirmedUser.picture}}">Welcome {{profile.confirmedUser.name}}</h3>
-    <div id="profile-left">
+    <div class="left-div">
       <h4>Number of Entries: {{profile.confirmedUser.entries.length}}</h4>
       <h4 ng-hide="showMe">About Me: {{profile.confirmedUser.aboutMe}}<span id="show-about-form" ng-click="showMe=true" class="glyphicon glyphicon-pencil"></span></h4>
       <form id="about-form" ng-show="showMe" class="form-group" ng-submit="profile.updateAboutMe()">
@@ -9,9 +9,11 @@
           <button ng-click="showMe=false" class="btn" type="submit">Submit</button></h4>
       </form>
     </div>
-    <div id="profile-right">
-      <h4>Your Entries:<button id="profile-add-entry" class="btn" href="/entries/new">Add Entry</button></h4>
-      <div ng-repeat="entry in profile.confirmedUser.entries">{{ entry }}</div>
+    <div class="right-div">
+      <h4>Your Entries:<button id="profile-add-entry" class="btn" ng-click="profile.entryRedirect()">Add Entry</button></h4>
+      <div ng-repeat="entry in profile.confirmedUser.entries">
+        <img class="profile-picture" ng-src="{{ entry.picture }}">{{ entry.name }} | {{ entry.date | date }} | {{ entry.location }}
+      </div>
     </div>
   </div>
 </div>

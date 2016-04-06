@@ -5,6 +5,7 @@ app.directive('autocomplete', function() {
 
   return {
     restrict: 'E',
+    transclude: true,
     scope: {
       searchParam: '=ngModel',
       suggestions: '=data',
@@ -241,6 +242,7 @@ app.directive('autocomplete', function() {
     template: '\
         <div class="autocomplete {{ attrs.class }}" id="{{ attrs.id }}">\
           <input\
+            autofocus\
             type="text"\
             ng-model="searchParam"\
             placeholder="{{ attrs.placeholder }}"\

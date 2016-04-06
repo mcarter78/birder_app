@@ -15,8 +15,10 @@
         <link href="/css/app.css" rel="stylesheet">
     </head>
     <body class="home">
-        <h1>Birdy app!</h1>
+      <header>
+        <img id="logo" src="/img/birdy-logo.svg"><h2>Birdy</h2>
         <button class="btn" ng-controller="LogoutController" ng-click="logout()">Log Out</button>
+      </header>
         <div class="container" id="main" ui-view>
         </div>
 
