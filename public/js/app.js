@@ -1,4 +1,5 @@
 angular.module('birdy', ['ui.router', 'auth0', 'angular-storage', 'angular-jwt', 'autocomplete'])
+       .controller('HomeController', HomeController)
        .controller('LoginController', LoginController)
        .controller('LogoutController', LogoutController)
        .controller('BirdsController', BirdsController)
@@ -24,7 +25,7 @@ angular.module('birdy', ['ui.router', 'auth0', 'angular-storage', 'angular-jwt',
           });
        });
 
-function birdyConfig(authProvider, jwtInterceptorProvider, $httpProvider, $stateProvider, $locationProvider) {
+function birdyConfig(authProvider, jwtInterceptorProvider, $httpProvider, $stateProvider, $locationProvider, $urlRouterProvider) {
 
   authProvider.init({
     domain: 'mcarter78.auth0.com',
@@ -56,10 +57,6 @@ function birdyConfig(authProvider, jwtInterceptorProvider, $httpProvider, $state
       controllerAs: 'auth',
       templateUrl: '/templates/login.html'
     })
-    .state('home', {
-      url: '/',
-      templateUrl: '/templates/home.html'
-    })
     .state('birds-index', {
       url: '/birds',
       controller: 'BirdsController',
@@ -81,10 +78,30 @@ function birdyConfig(authProvider, jwtInterceptorProvider, $httpProvider, $state
       data: { requiresLogin: true }
     });
 
+  //$urlRouterProvider.otherwise('/login');
+
   $locationProvider.html5Mode({
     enabled: true,
     requireBase: false
   });
+}
+
+function HomeController($scope, $window) {
+  if(window.localStorage.currentUser){
+    $scope.currentUser = JSON.parse(window.localStorage.currentUser);
+  }
+  $scope.login = function() {
+    $window.location.href = 'http://localhost:3000/login';
+  };
+  $scope.birdsLink = function() {
+    $window.location.href = 'http://localhost:3000/birds';
+  };
+  $scope.profileLink = function() {
+    $window.location.href = 'http://localhost:3000/profile';
+  };
+  $scope.addEntryLink = function() {
+    $window.location.href = 'http://localhost:3000/entries/new';
+  };
 }
 
 function LoginController(auth) {
@@ -92,6 +109,9 @@ function LoginController(auth) {
 }
 
 function LogoutController($scope, auth, store, $window) {
+  if(window.localStorage.currentUser){
+    $scope.currentUser = JSON.parse(window.localStorage.currentUser);
+  }
   $scope.logout = function() {
     console.log('logout called');
     auth.signout();

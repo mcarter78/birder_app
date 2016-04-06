@@ -1,5 +1,9 @@
+<h2>Life List:</h2>
 <div class="left-div">
   <div ng-repeat="bird in birds.allBirds">
-    <h4>{{bird.commonName}}<span id="bird-index-props">{{bird.sciName}} | {{bird.orderName}}</span><input type="checkbox"></h4>
+    <h4>{{ bird.commonName | uppercase }}
+      <span id="bird-index-props">{{bird.sciName}} | {{bird.orderName}}</span>
+      <input ng-model="bird.ticked" type="checkbox">
+    </h4>
   </div>
 </div>

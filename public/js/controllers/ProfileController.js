@@ -1,13 +1,15 @@
 function ProfileController($http, $state) {
   var vm = this;
-  vm.user = JSON.parse(window.localStorage.profile);
-  vm.currentUser = {};
   vm.confirmedUser = {};
   vm.updatedUser = {};
-  vm.currentUser.name = vm.user.name;
-  vm.currentUser.email = vm.user.email;
-  vm.currentUser.identities = vm.user.identities;
-  vm.currentUser.picture = vm.user.picture;
+  if(window.localStorage.profile){
+    vm.user = JSON.parse(window.localStorage.profile);
+    vm.currentUser = {};
+    vm.currentUser.name = vm.user.name;
+    vm.currentUser.email = vm.user.email;
+    vm.currentUser.identities = vm.user.identities;
+    vm.currentUser.picture = vm.user.picture;
+  }
   vm.checkProfile = function() {
     $http.get('/api/users')
       .then(function(res) {

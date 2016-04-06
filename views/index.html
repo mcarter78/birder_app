@@ -9,7 +9,7 @@
         <!-- font awesome from BootstrapCDN -->
         <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> -->
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
-
+        <link href='https://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
         <!-- <script src="/../auth0-variables.js"></script> -->
         <link href="/css/autocomplete.css" rel="stylesheet">
         <link href="/css/app.css" rel="stylesheet">
@@ -17,7 +17,10 @@
     <body class="home">
       <header>
         <img id="logo" src="/img/birdy-logo.svg"><h2>Birdy</h2>
-        <button class="btn" ng-controller="LogoutController" ng-click="logout()">Log Out</button>
+        <span ng-controller="HomeController" ng-hide="currentUser" ng-click="login()"> Log In</span>
+        <span ng-controller="LogoutController" ng-show="currentUser" ng-click="logout()"> Log Out</span>
+        <span ng-controller="HomeController" ng-show="currentUser" ng-click="profileLink()"> My Profile |</span>
+        <span ng-controller="HomeController" ng-click="birdsLink()">Life List |</span>
       </header>
         <div class="container" id="main" ui-view>
         </div>
