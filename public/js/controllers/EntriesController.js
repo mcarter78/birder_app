@@ -26,14 +26,18 @@ function EntriesController($scope, $http, $q){
       });
       $scope.matchBird = function (bird) {
         $http.post('/getBirdImage', bird)
-        .then(function(images) {
-          console.log(images.data);
-          // https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
-          var roll = Math.floor(Math.random() * (images.data.length - 0));
-          var rollImage = images.data[roll];
-          $scope.bird.picture = "https://farm" + rollImage.farm + ".staticflickr.com/" + rollImage.server +
-                                "/" + rollImage.id + "_" + rollImage.secret + "_m.jpg";
-        });
+          .then(function(images) {
+            console.log(images.data);
+            // https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
+            if(images.data.length === 0) {
+              $scope.bird.picture = '/img/no-image.svg';
+            } else {
+              var roll = Math.floor(Math.random() * (images.data.length - 0));
+              var rollImage = images.data[roll];
+              $scope.bird.picture = "https://farm" + rollImage.farm + ".staticflickr.com/" + rollImage.server +
+              "/" + rollImage.id + "_" + rollImage.secret + "_m.jpg";
+            }
+          });
       };
   };
   $scope.addEntry = function() {
