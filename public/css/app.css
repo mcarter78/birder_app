@@ -140,10 +140,12 @@ label {
   border-radius: 50%;
 }
 
+#edit-about-me,
 #show-about-form {
   float: right;
   margin-right: 5px;
   padding-bottom: 5px;
+  margin-top: -10px;
 }
 
 #welcome-message {
