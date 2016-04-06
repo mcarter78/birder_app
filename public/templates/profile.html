@@ -10,7 +10,7 @@
       <h4>Number of Entries: {{profile.confirmedUser.entries.length}}
       <button id="profile-add-entry" class="btn" ng-click="profile.entryRedirect()">Add Entry</button></h4>
       <div ng-repeat="entry in profile.confirmedUser.entries">
-        <img class="profile-picture" ng-src="{{ entry.picture }}">{{ entry.name }} | {{ entry.date | date }} | {{ entry.location }}
+        <img class="profile-picture" ng-src="{{ entry.picture }}">{{ entry.name }} | {{ entry.date | date }} | {{ entry.city }}
       </div>
     </div>
   </div>

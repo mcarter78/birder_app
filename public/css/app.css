@@ -41,6 +41,7 @@ input[type=checkbox]:focus + label:before {
 input {
   border: none;
   font-family: "EB Garamond", serif;
+  font-size: 0.8em;
   color: #777;
 }
 
@@ -113,7 +114,7 @@ label {
 .right-div {
   display: inline-block;
   width: 80%;
-  height: 400px;
+  height:500px;
   overflow-y: auto;
   margin-bottom: 30px;
   border: 3px solid #777;
@@ -136,7 +137,7 @@ label {
   height: 100px;
   width: 100px;
   margin-top: 7px;
-  margin-right: 10px;
+  margin-right: 5px;
   border-radius: 50%;
 }
 
@@ -159,23 +160,23 @@ label {
 }
 
 #auto-input {
-  width: 100%;
+  width: 80%;
+  height: 40px;
   padding: 0;
-  border-bottom: 3px solid #777;
+  border: 3px solid #777;
 }
 
 #auto-input button {
   float: right;
   margin-right: 5px;
-  margin-top: -12px;
+  margin-top: 6px;
 }
 
 #bird-search {
+  width: 70%;
   color: #777;
   font-size: 100%;
   border: none;
-  width: 70%;
-  margin-top: -15px;
   float: left;
 }
 
@@ -194,28 +195,26 @@ label {
 
 #selected-bird {
   border-bottom: 3px solid #777;
-  height: 120px;
-}
-
-#selected-bird div {
-  padding: 5px;
-}
-
-#entry-picture,
-#entry-right {
-  display: inline-block;
-  float: left;
+  border-top: none;
+  height: 500px;
 }
 
 #entry-picture {
-  border-right: 3px solid #777;
+  margin: 0 auto;
+  border-bottom: 3px solid #777;
+}
+
+#entry-right {
+  width: 100%;
+  padding: 0;
 }
 
 #entry-right div {
   border-bottom: 3px solid #777;
+  padding: 5px;
 }
 
-#bird-index-props {
+.smaller-italic {
   font-style: italic;
   font-size: 0.8em;
   font-weight: 400;
@@ -249,3 +248,65 @@ header h2 {
   margin-left: 5px;
   margin-bottom: 15px;
 }
+
+#map-div {
+  padding: 0;
+  width: 100%;
+  height: 220px;
+  clear: both;
+}
+
+.angular-google-map {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.angular-google-map-container {
+  padding: 0;
+  width: 100%;
+  height: 220px;
+}
+
+.angular-google-map-container div:first-child {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#new-entry-form {
+  padding: 0;
+}
+
+div[title="Show street map"],
+div[title="Show satellite imagery"] {
+  display: none;
+}
+
+.gm-style input {
+  height: 30px;
+  width: 250px;
+  margin: 5px;
+  font-family: "EB Garamond", serif;
+  font-size: 1.8em;
+}
+
+#entry-remarks {
+  width: 70%;
+}
+
+#entry-submit {
+  float: right;
+  margin-right: 5px;
+  margin-top: 10px;
+}
+
+/*for larger screens
+
+#map-div {
+  border-top: 3px solid #777;
+}
+
+#entry-picture {
+  border-right: 3px solid #777;
+}*/

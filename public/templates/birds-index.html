@@ -2,7 +2,7 @@
 <div class="left-div">
   <div ng-repeat="bird in birds.allBirds">
     <h4>{{ bird.commonName | uppercase }}
-      <span id="bird-index-props">{{bird.sciName}} | {{bird.orderName}}</span>
+      <span class="smaller-italic">{{bird.sciName}} | {{bird.orderName}}</span>
       <input ng-model="bird.ticked" type="checkbox">
     </h4>
   </div>

@@ -1,4 +1,4 @@
-angular.module('birdy', ['ui.router', 'auth0', 'angular-storage', 'angular-jwt', 'autocomplete'])
+angular.module('birdy', ['ui.router', 'auth0', 'angular-storage', 'angular-jwt', 'autocomplete', 'uiGmapgoogle-maps'])
        .controller('HomeController', HomeController)
        .controller('LoginController', LoginController)
        .controller('LogoutController', LogoutController)
@@ -25,7 +25,7 @@ angular.module('birdy', ['ui.router', 'auth0', 'angular-storage', 'angular-jwt',
           });
        });
 
-function birdyConfig(authProvider, jwtInterceptorProvider, $httpProvider, $stateProvider, $locationProvider, $urlRouterProvider) {
+function birdyConfig(authProvider, jwtInterceptorProvider, $httpProvider, $stateProvider, $locationProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider) {
 
   authProvider.init({
     domain: 'mcarter78.auth0.com',
@@ -83,6 +83,12 @@ function birdyConfig(authProvider, jwtInterceptorProvider, $httpProvider, $state
   $locationProvider.html5Mode({
     enabled: true,
     requireBase: false
+  });
+
+  uiGmapGoogleMapApiProvider.configure({
+        key: 'AIzaSyDbo8awNKXZdYZBM4rC6RS5oP8OmQLT9zY',
+        v: '3.22', //defaults to latest 3.X anyhow
+        libraries: 'places,weather,geometry,visualization'
   });
 }
 

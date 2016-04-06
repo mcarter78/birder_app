@@ -1,4 +1,4 @@
-function EntriesController($scope, $http, $q){
+function EntriesController($scope, $http, $q, uiGmapGoogleMapApi){
   $scope.data = [];
   $scope.bird = {};
   $scope.currentUser = JSON.parse(window.localStorage.currentUser);
@@ -27,7 +27,6 @@ function EntriesController($scope, $http, $q){
       $scope.matchBird = function (bird) {
         $http.post('/getBirdImage', bird)
           .then(function(images) {
-            console.log(images.data);
             // https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
             if(images.data.length === 0) {
               $scope.bird.picture = '/img/no-image.svg';
@@ -44,7 +43,47 @@ function EntriesController($scope, $http, $q){
     $http.post('/api/users/' + $scope.bird.userId + "/entries", $scope.bird)
       .then(function(entry) {
         console.log(entry);
+        $scope.bird = {};
+        window.location.href = '/profile';
       });
+  };
+  $scope.loadMap = function() {
+    uiGmapGoogleMapApi.then(function(maps) {
+      $scope.map = {
+        center: { latitude: 45, longitude: -73 },
+        zoom: 10
+       };
+    });
+  };
+  $scope.marker = {
+    id: 0,
+    options:{ draggable:true },
+    coords: { latitude: 45, longitude: -73 },
+   };
+  $scope.searchbox = {
+    events: {
+      places_changed : function (searchbox) {
+                var place = searchbox.getPlaces();
+                console.log(place[0]);
+                $scope.bird.city = place[0].formatted_address;
+                $scope.map = {
+                    center:{
+                        latitude:place[0].geometry.location.lat(),
+                        longitude:place[0].geometry.location.lng()
+                    },
+                    zoom: 10
+                };
+                $scope.marker = {
+                    id:0,
+                    options:{ draggable:true },
+                    coords:{
+                        latitude:place[0].geometry.location.lat(),
+                        longitude:place[0].geometry.location.lng()
+                    }
+                };
+          }
+    },
+    position: 'top-right'
   };
   $scope.getAll();
 }
