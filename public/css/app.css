@@ -1,7 +1,7 @@
 body {
   width: 100%;
   height: 100%;
-  /*font-family: "proxima-nova", sans-serif;*/
+  margin: 0;
   font-family: "EB Garamond", serif;
   font-size: 120%;
   text-align: center;
@@ -74,6 +74,13 @@ h2,
 h3 {
   font-weight: 100;
 }
+
+#main {
+  display: inline-block;
+  margin: 0 auto;
+  width: 90%;
+}
+
 #logo img {
   width: 300px;
   margin-bottom: 60px;
@@ -160,7 +167,7 @@ label {
 }
 
 #auto-input {
-  width: 80%;
+  width: 100%;
   height: 40px;
   padding: 0;
   border: 3px solid #777;
@@ -196,7 +203,8 @@ label {
 #selected-bird {
   border-bottom: 3px solid #777;
   border-top: none;
-  height: 500px;
+  height: 640px;
+  width: 100%;
 }
 
 #entry-picture {
@@ -226,9 +234,12 @@ label {
 }
 
 header {
-  width: 100%;
+  width: 90%;
   height: 120px;
+  display: inline-block;
+  margin: 0 auto;
   text-align: left;
+  clear: both;
 }
 
 header span {
@@ -236,11 +247,10 @@ header span {
 }
 
 header h2 {
-  display: inline;
-  position: absolute;
-  top: 30px;
-  left: 135px;
+  display: inline-block;
   color: #fc7b02;
+  margin-left: 5px;
+  margin-top: 40px;
 }
 
 #main h2 {
@@ -252,7 +262,7 @@ header h2 {
 #map-div {
   padding: 0;
   width: 100%;
-  height: 220px;
+  height: 330px;
   clear: both;
 }
 
@@ -265,7 +275,7 @@ header h2 {
 .angular-google-map-container {
   padding: 0;
   width: 100%;
-  height: 220px;
+  height: 330px;
 }
 
 .angular-google-map-container div:first-child {
@@ -303,10 +313,8 @@ div[title="Show satellite imagery"] {
 
 #nav-menu {
   display: inline-block;
-  position: absolute;
-  right: 10px;
-  top: 64px;
-
+  float: right;
+  margin-top: 50px;
 }
 
 /*for larger screens

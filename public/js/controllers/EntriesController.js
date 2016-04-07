@@ -50,15 +50,15 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi){
   $scope.loadMap = function() {
     uiGmapGoogleMapApi.then(function(maps) {
       $scope.map = {
-        center: { latitude: 45, longitude: -73 },
-        zoom: 10
+        center: { latitude: 37.773972, longitude: -122.431297 },
+        zoom: 12
        };
     });
   };
   $scope.marker = {
     id: 0,
     options:{ draggable:true },
-    coords: { latitude: 45, longitude: -73 },
+    coords: { latitude: 37.773972, longitude: -122.431297 },
    };
   $scope.searchbox = {
     events: {
@@ -71,18 +71,23 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi){
                         latitude:place[0].geometry.location.lat(),
                         longitude:place[0].geometry.location.lng()
                     },
-                    zoom: 10
+                    zoom: 12
                 };
                 $scope.marker = {
-                    id:0,
+                    id: 0,
                     options: { draggable:true },
                     coords: {
                         latitude:place[0].geometry.location.lat(),
                         longitude:place[0].geometry.location.lng()
                     },
-                    // events: {
-                    //   dragend: function
-                    // }
+                    events: {
+                      dragend: function(event){
+                        $scope.bird.coords = {latitude:event.position.lat(),
+                                              longitude:event.position.lng()
+                                            };
+                                            console.log($scope.bird);
+                      }
+                    }
                 };
           }
     },
