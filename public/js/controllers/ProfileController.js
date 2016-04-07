@@ -75,7 +75,6 @@ function ProfileController($http, $state, uiGmapGoogleMapApi) {
     }
   };
   setTimeout(function() {
-    vm.checkProfile();
     vm.loadMap();
     vm.getMarkers();
     console.log(vm.markers);

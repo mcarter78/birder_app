@@ -76,7 +76,20 @@ function birdyConfig(authProvider, jwtInterceptorProvider, $httpProvider, $state
       controllerAs: 'entries',
       templateUrl: '/templates/add-entry.html',
       data: { requiresLogin: true }
+    })
+    .state('show-entry', {
+      url: 'users/:userid/entries/:id',
+      controller: 'EntriesController',
+      controllerAs: 'entries',
+      templateUrl: '/templates/show-entry.html',
+      data: { requiresLogin: true }
     });
+    // .state('users', {
+    //   url: '/users',
+    //   controller: 'HomeController',
+    //   controllerAs: 'home',
+    //   templateUrl: '/templates/users-index.html'
+    // });
 
   //$urlRouterProvider.otherwise('/login');
 

@@ -30,6 +30,7 @@ router.route('/api/users/:id/entries')
   .post(entriesController.create); // WORKING
 
 router.route('/api/users/:id/entries/:id')
+  .get(entriesController.show)
   .patch(entriesController.update) // WORKING
   .delete(entriesController.delete); // WORKING
 

@@ -6,14 +6,14 @@ var User = require('../models/user');
 var entriesController = {
   all: function(req, res) {
     var id = req.params.id;
-    User.get(id).getJoin({entries:true})
-      .then(function(user) {
-        res.json(user.entries);
+    Entry.get(id)
+      .then(function(entry) {
+        res.json(entry);
         });
   },
   show: function(req, res) {
     var id = req.params.id;
-    Entry.getJoin(id)
+    Entry.get(id)
       .then(function(entry) {
         res.json(entry);
       });
@@ -40,8 +40,13 @@ var entriesController = {
     var id = req.params.id;
     Entry.get(id)
       .then(function(entry) {
+        if (req.body.userId) entry.userId = req.body.userId;
         if (req.body.birdId) entry.birdId = req.body.birdId;
+        if (req.body.name) entry.name = req.body.name;
+        if (req.body.picture) entry.picture = req.body.picture;
+        if (req.body.city) entry.city = req.body.city;
         if (req.body.location) entry.location = req.body.location;
+        if (req.body.coords) entry.coords = req.body.coords;
         if (req.body.date) entry.date = req.body.date;
         if (req.body.remarks) entry.remarks = req.body.remarks;
         User.get(entry.userId).getJoin({entries:true}).run()

@@ -1,0 +1,75 @@
+<h2 ng-init="getEntry()">Edit Entry:</h2>
+
+
+<div id="auto-input">
+  <span ng-hide="showMe" id="show-bird-name">{{ entry.name }}</span>
+  <button class="btn" ng-hide="showMe" ng-click="deleteEntry()">Delete Entry</button>
+  <button class="btn" ng-hide="showMe" ng-click="loadMap(); showMe=true">Edit Entry</button>
+  <autocomplete
+    attr-input-id="bird-search"
+    data="data"
+    ng-model="updatedEntry.name"
+    attr-placeholder="Enter Bird Common Name..."
+    autofocus
+    ng-show="showMe">
+  </autocomplete>
+  <button ng-show="showMe" class="btn" ng-click="getBird()">Select</button>
+</div>
+
+<div class="right-div" id="selected-bird">
+  <div id="entry-picture">
+    <img class="profile-picture" src="{{ entry.picture }}">
+  </div>
+  <form id="new-entry-form" ng-submit="updateEntry()">
+    <div id="entry-right">
+
+      <div>
+        Date of Sighting: <span id="show-bird-date" ng-hide="showMe">{{ entry.date | date }}</span><input ng-show="showMe" type="date" ng-model="updatedEntry.date" required>
+      </div>
+
+      <div>
+        Remarks: <span id="show-bird-remarks" ng-hide="showMe">{{ entry.remarks }}</span><input ng-show="showMe" id="entry-remarks" type="text" ng-model="updatedEntry.remarks" placeholder="Click here to enter remarks">
+      </div>
+      <div>
+        Locaton: <span ng-show="showMe" class="smaller-italic">Search for nearest city on the map below and place marker</span>
+      </div>
+    </div>
+
+    <div id="map-div">
+
+      <ui-gmap-google-map options="{streetViewControl:false}"
+                          ng-show="showMe"
+                          center="map.center"
+                          zoom="map.zoom"
+                          ng-hide="showMe">
+        <ui-gmap-search-box options="searchbox.options"
+                            template="searchbox.template"
+                            events="searchbox.events"
+                            position="searchbox.position">
+        </ui-gmap-search-box>
+        <ui-gmap-marker coords="marker.coords"
+                        options="marker.options"
+                        events="marker.events"
+                        idkey="marker.id">
+        </ui-gmap-marker>
+      </ui-gmap-google-map>
+      <ui-gmap-google-map options="{streetViewControl:false}"
+                          ng-show="showMe"
+                          center="map.center"
+                          zoom="map.zoom"
+                          ng-show="showMe">
+        <ui-gmap-search-box options="searchbox.options"
+                            template="searchbox.template"
+                            events="searchbox.events"
+                            position="searchbox.position">
+        </ui-gmap-search-box>
+        <ui-gmap-marker coords="marker.coords"
+                        options="marker.options"
+                        events="marker.events"
+                        idkey="marker.id">
+        </ui-gmap-marker>
+      </ui-gmap-google-map>
+    </div>
+    <button ng-show="showMe" id="entry-submit" class="btn" type="submit">Submit</button>
+  </form>
+</div>

@@ -1,6 +1,8 @@
-function EntriesController($scope, $http, $q, uiGmapGoogleMapApi){
+function EntriesController($scope, $http, $q, uiGmapGoogleMapApi, $state, $stateParams){
   $scope.data = [];
   $scope.bird = {};
+  $scope.entry = {};
+  $scope.updatedEntry = {};
   $scope.currentUser = JSON.parse(window.localStorage.currentUser);
   $scope.bird.userId = $scope.currentUser.id;
   console.log($scope.bird.userId);
@@ -20,9 +22,12 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi){
         res.data.forEach(function(bird) {
           if (bird.commonName === $scope.selection) {
             $scope.bird.id = bird.id;
+            $scope.updatedEntry.id = bird.id;
             $scope.matchBird(bird);
+
           }
         });
+        $scope.loadMap();
       });
       $scope.matchBird = function (bird) {
         $http.post('/getBirdImage', bird)
@@ -39,6 +44,14 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi){
           });
       };
   };
+  $scope.getEntry = function() {
+    console.log($stateParams);
+    $http.get('api/users/' + $stateParams.userId + '/entries/' + $stateParams.id)
+      .then(function(entry) {
+        console.log(entry.data);
+        $scope.entry = entry.data;
+      });
+  };
   $scope.addEntry = function() {
     $http.post('/api/users/' + $scope.bird.userId + "/entries", $scope.bird)
       .then(function(entry) {
@@ -46,6 +59,24 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi){
         $scope.bird = {};
         window.location.href = '/profile';
       });
+  };
+  $scope.updateEntry = function() {
+    console.log($scope.updatedEntry);
+    $http.patch('/api/users/' + $scope.currentUser.id + '/entries/' + $scope.entry.id, $scope.updatedEntry)
+      .then(function(entry) {
+        $scope.entry = entry.data;
+        $scope.updatedEntry = {};
+      });
+  };
+  $scope.deleteEntry = function() {
+    var delConfirm = confirm('Are you sure you want to delete this entry?');
+      if (delConfirm) {
+        $http.delete('/api/users/' + $scope.currentUser.id + '/entries/' + $scope.entry.id)
+          .then(function(entry) {
+            console.log('deleted');
+            $state.go('profile');
+          });
+      }
   };
   $scope.loadMap = function() {
     uiGmapGoogleMapApi.then(function(maps) {

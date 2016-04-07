@@ -111,7 +111,7 @@ label {
 #profile-div {
   display: inline-block;
   width: 100%;
-  height: 96px;
+  height: 171px;
   margin: 0 auto;
   border: 3px solid #777;
   border-bottom: none;
@@ -148,7 +148,8 @@ label {
 #profile-add-entry-div h4 {
   margin: 0;
   padding: 10px 10px;
-
+  display: inline-block;
+  width: 70%;
 }
 
 #profile-map {
@@ -197,6 +198,8 @@ label {
 #edit-about-me,
 #show-about-form {
   float: right;
+  margin-right: 5px;
+  margin-top: 8px;
 }
 
 #profile-head {
@@ -213,6 +216,8 @@ label {
 
 #profile-add-entry {
   float: right;
+  margin-right: 5px;
+  margin-top: 8px;
 }
 
 #auto-input {
@@ -291,7 +296,7 @@ header {
   clear: both;
 }
 
-header span {
+header a {
   float: right;
 }
 
@@ -371,7 +376,18 @@ div[title="Show satellite imagery"] {
   margin-top: 50px;
 }
 
+a {
+  text-decoration: none;
+  color: #777;
+}
+
 .a0-image,
 .a0-icon-badge {
   display: none;
+}
+
+#show-bird-name {
+  float: left;
+  margin-left: 5px;
+  margin-top: 5px;
 }
