@@ -1,17 +1,44 @@
-<div ng-init="profile.checkProfile()" ng-cloak>
+  <div id="profile-head">
+    <img class="profile-picture" ng-src="{{profile.confirmedUser.picture}}"><span id="welcome-message">Hi, {{profile.confirmedUser.name}}!</span>
+  </div>
   <div id="profile-div">
-    <h3 id="welcome-message"><img class="profile-picture" ng-src="{{profile.confirmedUser.picture}}">Welcome {{profile.confirmedUser.name}}</h3>
-    <div class="left-div">
+
+    <div id="profile-about">
+
       <h4 ng-hide="showMe">About Me: {{profile.confirmedUser.aboutMe}}<button id="show-about-form" ng-click="showMe=true" class="btn">Edit</button></h4>
       <form id="about-form" ng-show="showMe" class="form-group" ng-submit="profile.updateAboutMe()">
-        <h4>About Me:<input type="text" ng-model="profile.updatedUser.aboutMe" placeholder="{{profile.confirmedUser.aboutMe}}">
+        <h4>About Me:<input id="about-input" type="text" ng-model="profile.updatedUser.aboutMe" placeholder="{{profile.confirmedUser.aboutMe}}" autofocus>
           <button ng-click="showMe=false" id="edit-about-me" class="btn" type="submit">Submit</button></h4>
       </form>
+
+    </div>
+
+    <div id="profile-add-entry-div">
       <h4>Number of Entries: {{profile.confirmedUser.entries.length}}
       <button id="profile-add-entry" class="btn" ng-click="profile.entryRedirect()">Add Entry</button></h4>
-      <div ng-repeat="entry in profile.confirmedUser.entries">
-        <img class="profile-picture" ng-src="{{ entry.picture }}">{{ entry.name }} | {{ entry.date | date }} | {{ entry.city }}
-      </div>
     </div>
+
   </div>
+
+
+<div id="profile-map">
+  <ui-gmap-google-map options="{streetViewControl:false}"
+  center="profile.map.center"
+  zoom="profile.map.zoom">
+  <ui-gmap-markers models="profile.markers" coords="'coords'" idKey="'id'">
+  </ui-gmap-markers>
+  <ui-gmap-marker coords="marker.coords"
+  options="marker.options"
+  events="marker.events"
+  idkey="marker.id"
+  ng-repeat="marker in map.markers track by $index">
+</ui-gmap-marker>
+</ui-gmap-google-map>
+</div>
+<div id="profile-entries">
+
+  <div ng-repeat="entry in profile.confirmedUser.entries | orderBy:'-date'">
+    <img class="profile-picture" ng-src="{{ entry.picture }}">{{ entry.name }} | {{ entry.date | date }} | {{ entry.city }}
+  </div>
+
 </div>

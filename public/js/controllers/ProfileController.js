@@ -1,7 +1,8 @@
-function ProfileController($http, $state) {
+function ProfileController($http, $state, uiGmapGoogleMapApi) {
   var vm = this;
   vm.confirmedUser = {};
   vm.updatedUser = {};
+  vm.markers = [];
   if(window.localStorage.profile){
     vm.user = JSON.parse(window.localStorage.profile);
     vm.currentUser = {};
@@ -48,4 +49,35 @@ function ProfileController($http, $state) {
     console.log('entryRedirect called');
     $state.go('new-entry');
   };
+  vm.loadMap = function() {
+    uiGmapGoogleMapApi.then(function(maps) {
+      vm.map = {
+        center: { latitude: 37.773972, longitude: -122.431297 },
+        zoom: 2
+       };
+    });
+  };
+  vm.getMarkers = function() {
+    console.log(vm.confirmedUser);
+    var id = 0;
+    var marker = {};
+    if(vm.confirmedUser.entries.length > 0) {
+      vm.confirmedUser.entries.forEach(function(entry) {
+        if(entry.coords) {
+          marker.id = id;
+          marker.coords = entry.coords;
+          console.log(marker.coords);
+          vm.markers.push(marker);
+          marker = {};
+          id++;
+        }
+      });
+    }
+  };
+  setTimeout(function() {
+    vm.checkProfile();
+    vm.loadMap();
+    vm.getMarkers();
+    console.log(vm.markers);
+  }, 700);
 }
