@@ -1,9 +1,10 @@
 <h2>Life List:</h2>
-<div class="left-div">
-  <div ng-repeat="bird in birds.allBirds">
+<!-- <h4 class="smaller-italic">Birds that you have created entries for will be automatically ticked on this list</h4> -->
+<div class="left-div" id="birds-index-div">
+  <div ng-repeat="bird in birds.allBirds" ng-init="birds.checkBox(bird)">
     <h4>{{ bird.commonName | uppercase }}
       <span class="smaller-italic">{{bird.sciName}} | {{bird.orderName}}</span>
-      <input ng-model="bird.ticked" type="checkbox">
+      <input ng-model="birds.ticked" type="checkbox">
     </h4>
   </div>
 </div>

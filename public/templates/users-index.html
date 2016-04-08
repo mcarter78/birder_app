@@ -1,0 +1,7 @@
+<h2>Top BirdSpotters:</h2>
+
+<div id="users-index-div">
+  <div ng-repeat="user in allUsers | orderBy: '-entries.length'">
+    <img class="profile-picture-sm" ng-src="{{ user.picture }}">{{ user.name }} - {{ user.entries.length }} entries
+  </div>
+</div>

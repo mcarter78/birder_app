@@ -195,6 +195,12 @@ label {
   border-radius: 50%;
 }
 
+.profile-picture-sm {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+
 #edit-about-me,
 #show-about-form {
   float: right;
@@ -370,12 +376,6 @@ div[title="Show satellite imagery"] {
   margin-top: 10px;
 }
 
-#nav-menu {
-  display: inline-block;
-  float: right;
-  margin-top: 50px;
-}
-
 a {
   text-decoration: none;
   color: #777;
@@ -390,4 +390,67 @@ a {
   float: left;
   margin-left: 5px;
   margin-top: 5px;
+}
+
+#users-index-div {
+  margin: 0;
+  width: 100%
+  text-align: left;
+  border: 3px solid #777;
+}
+
+#users-index-div div {
+  margin: 0;
+  padding: 10px 0;
+  width: 100%;
+  text-align: left;
+  border-bottom: 3px solid #777;
+}
+
+#users-index-div div img {
+  margin-left: 15px;
+}
+
+#birds-index-div {
+  width: 100%;
+  margin: 0;
+}
+
+#birds-index-div div {
+  width: 100%;
+  padding: 0;
+}
+
+#birds-index-div div h4 input {
+  padding: 10px;
+}
+
+#nav-menu {
+  display: block;
+  background-color: #fc7b02;
+  z-index: 999;
+
+  clear: none;
+  text-align: left;
+}
+
+#nav-menu ul {
+  list-style: none;
+  display: block;
+  height: 280px;
+}
+
+#nav-menu ul a {
+  color: #fff;
+  margin: 20px;
+}
+
+#nav-menu ul li {
+  height: 16%;
+}
+
+#hamburger {
+  float: right;
+  margin-top: 40px;
+  margin-right: 5px;
 }

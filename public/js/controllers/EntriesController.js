@@ -5,7 +5,6 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi, $state, $state
   $scope.updatedEntry = {};
   $scope.currentUser = JSON.parse(window.localStorage.currentUser);
   $scope.bird.userId = $scope.currentUser.id;
-  console.log($scope.bird.userId);
   $scope.getAll = function() {
     $http.get('/api/birds')
       .then(function(res) {
@@ -21,7 +20,7 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi, $state, $state
       .then(function(res) {
         res.data.forEach(function(bird) {
           if (bird.commonName === $scope.selection) {
-            $scope.bird.id = bird.id;
+            $scope.bird.birdId = bird.id;
             $scope.updatedEntry.id = bird.id;
             $scope.matchBird(bird);
 

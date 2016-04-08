@@ -5,6 +5,7 @@ angular.module('birdy', ['ui.router', 'auth0', 'angular-storage', 'angular-jwt',
        .controller('BirdsController', BirdsController)
        .controller('EntriesController', EntriesController)
        .controller('ProfileController', ProfileController)
+       .controller('PageslideController', PageslideController)
        .config(birdyConfig)
        .run(function($rootScope, auth, store, jwtHelper, $location) {
          // This hooks al auth events to check everything as soon as the app starts
@@ -83,13 +84,13 @@ function birdyConfig(authProvider, jwtInterceptorProvider, $httpProvider, $state
       controllerAs: 'entries',
       templateUrl: '/templates/show-entry.html',
       data: { requiresLogin: true }
+    })
+    .state('users', {
+      url: '/users',
+      controller: 'HomeController',
+      controllerAs: 'home',
+      templateUrl: '/templates/users-index.html'
     });
-    // .state('users', {
-    //   url: '/users',
-    //   controller: 'HomeController',
-    //   controllerAs: 'home',
-    //   templateUrl: '/templates/users-index.html'
-    // });
 
   //$urlRouterProvider.otherwise('/login');
 
@@ -105,7 +106,14 @@ function birdyConfig(authProvider, jwtInterceptorProvider, $httpProvider, $state
   });
 }
 
-function HomeController($scope, $window) {
+function HomeController($scope, $http, $window) {
+  $scope.allUsers = [];
+  $scope.getUsers = function() {
+    $http.get('/api/users')
+      .then(function(users) {
+        $scope.allUsers = users.data;
+      });
+  };
   if(window.localStorage.currentUser){
     $scope.currentUser = JSON.parse(window.localStorage.currentUser);
   }
@@ -115,12 +123,17 @@ function HomeController($scope, $window) {
   $scope.birdsLink = function() {
     $window.location.href = 'http://localhost:3000/birds';
   };
+  $scope.usersLink = function() {
+    $window.location.href = 'http://localhost:3000/users';
+  };
   $scope.profileLink = function() {
     $window.location.href = 'http://localhost:3000/profile';
   };
   $scope.addEntryLink = function() {
     $window.location.href = 'http://localhost:3000/entries/new';
   };
+
+  $scope.getUsers();
 }
 
 function LoginController(auth) {
@@ -138,5 +151,12 @@ function LogoutController($scope, auth, store, $window) {
     store.remove('token');
     window.localStorage.removeItem('currentUser');
     $window.location.href = 'https://mcarter78.auth0.com/v2/logout?returnTo=http://localhost:3000/';
+  };
+}
+
+function PageslideController($scope) {
+  $scope.checked = false; // This will be binded using the ps-open attribute
+  $scope.toggle = function(){
+    $scope.checked = !$scope.checked;
   };
 }
