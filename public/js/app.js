@@ -118,19 +118,19 @@ function HomeController($scope, $http, $window) {
     $scope.currentUser = JSON.parse(window.localStorage.currentUser);
   }
   $scope.login = function() {
-    $window.location.href = 'http://localhost:3000/login';
+    $window.location.href = '/login';
   };
   $scope.birdsLink = function() {
-    $window.location.href = 'http://localhost:3000/birds';
+    $window.location.href = '/birds';
   };
   $scope.usersLink = function() {
-    $window.location.href = 'http://localhost:3000/users';
+    $window.location.href = '/users';
   };
   $scope.profileLink = function() {
-    $window.location.href = 'http://localhost:3000/profile';
+    $window.location.href = '/profile';
   };
   $scope.addEntryLink = function() {
-    $window.location.href = 'http://localhost:3000/entries/new';
+    $window.location.href = '/entries/new';
   };
 
   $scope.getUsers();
