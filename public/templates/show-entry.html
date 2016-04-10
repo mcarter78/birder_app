@@ -1,4 +1,4 @@
-<h2 ng-init="getEntry()">Edit Entry:</h2>
+<h2 ng-init="getEntry(); loadShowMap()">Edit Entry:</h2>
 
 
 <div id="auto-input">
@@ -31,29 +31,21 @@
         Remarks: <span id="show-bird-remarks" ng-hide="showMe">{{ entry.remarks }}</span><input ng-show="showMe" id="entry-remarks" type="text" ng-model="updatedEntry.remarks" placeholder="Click here to enter remarks">
       </div>
       <div>
-        Locaton: <span ng-show="showMe" class="smaller-italic">Search for nearest city on the map below and place marker</span>
+        Locaton: <span id="show-bird-location" ng-hide="showMe">{{ entry.city }}</span><span ng-show="showMe" class="smaller-italic">Search for nearest city on the map below and place marker</span>
       </div>
     </div>
 
     <div id="map-div">
 
       <ui-gmap-google-map options="{streetViewControl:false}"
-                          ng-show="showMe"
-                          center="map.center"
-                          zoom="map.zoom"
+                          center="showMap.coords"
+                          zoom="showMap.zoom"
                           ng-hide="showMe">
-        <ui-gmap-search-box options="searchbox.options"
-                            template="searchbox.template"
-                            events="searchbox.events"
-                            position="searchbox.position">
-        </ui-gmap-search-box>
-        <ui-gmap-marker coords="marker.coords"
-                        options="marker.options"
-                        events="marker.events"
-                        idkey="marker.id">
+        <ui-gmap-marker coords="showMarker.coords"
+                        idkey="showMarker.id">
         </ui-gmap-marker>
       </ui-gmap-google-map>
-      <ui-gmap-google-map options="{streetViewControl:false}"
+      <!-- <ui-gmap-google-map options="{streetViewControl:false}"
                           ng-show="showMe"
                           center="map.center"
                           zoom="map.zoom"
@@ -68,7 +60,7 @@
                         events="marker.events"
                         idkey="marker.id">
         </ui-gmap-marker>
-      </ui-gmap-google-map>
+      </ui-gmap-google-map> -->
     </div>
     <button ng-show="showMe" id="entry-submit" class="btn" type="submit">Submit</button>
   </form>

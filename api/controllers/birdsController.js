@@ -12,10 +12,8 @@ var birdsController = {
   getBirdImage: function(req, res) {
     var sciName = req.body.sciName;
     var data = sciName.split(' ').join(',').toString().toLowerCase();
-    console.log(data);
     flickr.get("photos.search", {"tags":data, "tag_mode": "all"}, function(err, result){
       if (err) return console.error(err);
-      console.log(result.photos.photo[0]);
       res.json(result.photos.photo);
 });
   },

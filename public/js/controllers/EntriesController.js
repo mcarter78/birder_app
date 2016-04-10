@@ -77,6 +77,19 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi, $state, $state
           });
       }
   };
+  $scope.loadShowMap = function() {
+    uiGmapGoogleMapApi.then(function(maps) {
+      $scope.showMap = {
+        center: $scope.entry.coords,
+        zoom: 12
+       };
+    });
+  };
+  $scope.showMarker =  {
+    id: 0,
+    coords: $scope.entry.coords,
+    options: {draggable:false}
+  };
   $scope.loadMap = function() {
     uiGmapGoogleMapApi.then(function(maps) {
       $scope.map = {
