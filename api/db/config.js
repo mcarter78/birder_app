@@ -1,7 +1,7 @@
 var thinky = require('thinky')({
-  host: 'localhost',
+  host: '10.133.216.2',
   port: '28015',
-  authKey: 'Gg5HfgrK3TnhljtGeqPQ9HH17kAjiEAGjbYZJvhL50',
+  //authKey: 'Gg5HfgrK3TnhljtGeqPQ9HH17kAjiEAGjbYZJvhL50',
   db: 'birder_app'
 });
 
