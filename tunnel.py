@@ -5,7 +5,6 @@
 #   SSH_TUNNEL_TARGET=user@hostname:port
 #   SSH_TUNNEL_KEY=RSA:{base64 private key}
 #   SSH_TUNNEL_FORWARDS=localaddr:localport:remoteaddr:remoteport,[...]
-#
 # Notes:
 #
 #   SSH_TUNNEL_KEY is the key type (e.g. "RSA"), a colon character, and then
