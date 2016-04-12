@@ -464,3 +464,8 @@ a {
   margin: 30px auto;
   font-size: 0.9em;
 }
+
+#start-button {
+  font-size: 1.1em;
+  padding: 5px 12px;
+}
