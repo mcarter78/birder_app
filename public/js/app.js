@@ -52,6 +52,12 @@ function birdyConfig(authProvider, jwtInterceptorProvider, $httpProvider, $state
   $httpProvider.interceptors.push('jwtInterceptor');
 
   $stateProvider
+    .state('home', {
+      url: '/',
+      controller: 'HomeController',
+      controllerAs: 'home',
+      templateUrl: '/templates/home.html'
+    })
     .state('login', {
       url: '/login',
       controller: 'LoginController',
@@ -92,7 +98,7 @@ function birdyConfig(authProvider, jwtInterceptorProvider, $httpProvider, $state
       templateUrl: '/templates/users-index.html'
     });
 
-  //$urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/login');
 
   $locationProvider.html5Mode({
     enabled: true,
