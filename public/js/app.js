@@ -150,7 +150,7 @@ function LogoutController($scope, auth, store, $window) {
     store.remove('profile');
     store.remove('token');
     window.localStorage.removeItem('currentUser');
-    $window.location.href = 'https://mcarter78.auth0.com/v2/logout?returnTo=http://localhost:3000/';
+    $window.location.href = 'https://mcarter78.auth0.com/v2/logout?returnTo=http://www.birdspots.net/login';
   };
 }
 
