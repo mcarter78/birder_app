@@ -1,4 +1,4 @@
-  <div id="profile-head">
+  <div id="profile-head" ng-init="profile.checkProfile()">
     <img class="profile-picture" ng-src="{{profile.confirmedUser.picture}}">
     <span id="welcome-message">Hi, {{profile.confirmedUser.name}}!</span>
   </div>
@@ -37,7 +37,7 @@
 </ui-gmap-marker>
 </ui-gmap-google-map>
 </div>
-<div id="profile-entries" ng-init="profile.checkProfile()">
+<div id="profile-entries">
 
   <div ng-repeat="entry in profile.confirmedUser.entries | orderBy:'-date'">
     <a ui-sref="show-entry({userId: entry.userId,id: entry.id})">
