@@ -458,3 +458,9 @@ a {
   margin-top: 40px;
   margin-right: 5px;
 }
+
+#welcome-message p {
+  width: 80%;
+  margin: 30px auto;
+  font-size: 0.9em;
+}
