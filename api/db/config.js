@@ -1,5 +1,5 @@
 var thinky = require('thinky')({
-  host: 'aws-us-east-1-portal.12.dblayer.com',
+  host: 'aws-us-east-1-portal.13.dblayer.com',
   port: '11113',
   authKey: 'Gg5HfgrK3TnhljtGeqPQ9HH17kAjiEAGjbYZJvhL50',
   db: 'birder_app'
@@ -10,7 +10,7 @@ var fs = require('fs');
 
 fs.readFile('./cacert', function(err, caCert) {
   r.connect({
-    host: 'aws-us-east-1-portal.12.dblayer.com',
+    host: 'aws-us-east-1-portal.13.dblayer.com',
     port: 11113,
     authKey: 'Gg5HfgrK3TnhljtGeqPQ9HH17kAjiEAGjbYZJvhL50',
     ssl: {
