@@ -142,8 +142,11 @@ function HomeController($scope, $http, $window) {
   $scope.getUsers();
 }
 
-function LoginController(auth) {
+function LoginController(auth, $state) {
   this.auth = auth;
+  if(window.localStorage.profile){
+    $state.go('profile');
+  }
 }
 
 function LogoutController($scope, auth, store, $window) {

@@ -306,6 +306,10 @@ header a {
   float: right;
 }
 
+#header-left {
+  float: left;
+}
+
 header h2 {
   display: inline-block;
   color: #fc7b02;
