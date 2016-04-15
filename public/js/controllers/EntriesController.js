@@ -14,7 +14,6 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi, $state, $state
       });
   };
   $scope.getBird = function() {
-    console.log('getBird called');
     $scope.bird.name = $scope.selection;
     $http.get('/api/birds')
       .then(function(res) {
@@ -44,23 +43,19 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi, $state, $state
       };
   };
   $scope.getEntry = function() {
-    console.log($stateParams);
     $http.get('api/users/' + $stateParams.userId + '/entries/' + $stateParams.id)
       .then(function(entry) {
-        console.log(entry.data);
         $scope.entry = entry.data;
       });
   };
   $scope.addEntry = function() {
     $http.post('/api/users/' + $scope.bird.userId + "/entries", $scope.bird)
       .then(function(entry) {
-        console.log(entry);
         $scope.bird = {};
         window.location.href = '/profile';
       });
   };
   $scope.updateEntry = function() {
-    console.log($scope.updatedEntry);
     $http.patch('/api/users/' + $scope.currentUser.id + '/entries/' + $scope.entry.id, $scope.updatedEntry)
       .then(function(entry) {
         $scope.entry = entry.data;
@@ -72,7 +67,6 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi, $state, $state
       if (delConfirm) {
         $http.delete('/api/users/' + $scope.currentUser.id + '/entries/' + $scope.entry.id)
           .then(function(entry) {
-            console.log('deleted');
             $state.go('profile');
           });
       }
@@ -107,7 +101,6 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi, $state, $state
     events: {
       places_changed : function (searchbox) {
                 var place = searchbox.getPlaces();
-                console.log(place[0]);
                 $scope.bird.city = place[0].formatted_address;
                 $scope.map = {
                     center:{
@@ -128,7 +121,6 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi, $state, $state
                         $scope.bird.coords = {latitude:event.position.lat(),
                                               longitude:event.position.lng()
                                             };
-                                            console.log($scope.bird);
                       }
                     }
                 };

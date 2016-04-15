@@ -35,7 +35,6 @@ function birdyConfig(authProvider, jwtInterceptorProvider, $httpProvider, $state
   });
 
   authProvider.on('loginSuccess', function($location, profilePromise, idToken, store) {
-    console.log("Login Success");
     profilePromise.then(function(profile) {
       store.set('profile', profile);
       store.set('token', idToken);
@@ -154,7 +153,6 @@ function LogoutController($scope, auth, store, $window) {
     $scope.currentUser = JSON.parse(window.localStorage.currentUser);
   }
   $scope.logout = function() {
-    console.log('logout called');
     auth.signout();
     store.remove('profile');
     store.remove('token');
