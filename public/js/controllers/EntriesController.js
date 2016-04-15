@@ -43,7 +43,7 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi, $state, $state
       };
   };
   $scope.getEntry = function() {
-    $http.get('api/users/' + $stateParams.userId + '/entries/' + $stateParams.id)
+    $http.get('/api/users/' + $stateParams.userId + '/entries/' + $stateParams.id)
       .then(function(entry) {
         $scope.entry = entry.data;
       });

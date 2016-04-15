@@ -84,7 +84,7 @@ function birdyConfig(authProvider, jwtInterceptorProvider, $httpProvider, $state
       data: { requiresLogin: true }
     })
     .state('show-entry', {
-      url: 'users/:userid/entries/:id',
+      url: '/users/:userId/entries/:id',
       controller: 'EntriesController',
       controllerAs: 'entries',
       templateUrl: '/templates/show-entry.html',
@@ -119,8 +119,8 @@ function HomeController($scope, $http, $window) {
         $scope.allUsers = users.data;
       });
   };
-  if(window.localStorage.currentUser){
-    $scope.currentUser = JSON.parse(window.localStorage.currentUser);
+  if(window.localStorage.profile){
+    $scope.currentUser = JSON.parse(window.localStorage.profile);
   }
   $scope.login = function() {
     $window.location.href = '/login';
@@ -149,8 +149,8 @@ function LoginController(auth, $state, $window) {
 }
 
 function LogoutController($scope, auth, store, $window) {
-  if(window.localStorage.currentUser){
-    $scope.currentUser = JSON.parse(window.localStorage.currentUser);
+  if(window.localStorage.profile){
+    $scope.currentUser = JSON.parse(window.localStorage.profile);
   }
   $scope.logout = function() {
     auth.signout();

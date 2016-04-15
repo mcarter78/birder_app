@@ -1,4 +1,4 @@
-function ProfileController($http, $state, uiGmapGoogleMapApi) {
+function ProfileController($http, $state, uiGmapGoogleMapApi, $window) {
   var vm = this;
   vm.confirmedUser = {};
   vm.updatedUser = {};
