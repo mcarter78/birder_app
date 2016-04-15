@@ -38,10 +38,11 @@
     <div id="map-div">
 
       <ui-gmap-google-map options="{streetViewControl:false}"
-                          center="showMap.coords"
+                          center="showMap.center"
                           zoom="showMap.zoom"
                           ng-hide="showMe">
         <ui-gmap-marker coords="showMarker.coords"
+                        options="showMarker.options"
                         idkey="showMarker.id">
         </ui-gmap-marker>
       </ui-gmap-google-map>
