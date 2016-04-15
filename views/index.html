@@ -22,14 +22,14 @@
       <a id="header-left" href="#" ng-controller="HomeController" ng-click="login()"><img id="logo" src="/img/birdy-logo.svg"><h2>BirdSpots</h2></a>
       <button class='btn' id="hamburger" ng-click="showNav=!showNav">&#9776;</button>
       </header>
-      <div id="nav-menu" ng-show="showNav">
+      <div id="nav-menu" ng-show="showNav" ng-cloak>
         <ul>
           <li><a href="#" ng-controller="HomeController" ng-click="birdsLink()">Life List</a></li>
           <li><a href="#" ng-controller="HomeController" ng-click="usersLink()">Leaderboard</a></li>
-          <li><a href="#" ng-controller="HomeController" ng-show="currentUser" ng-click="profileLink()"> My Profile</a></li>
-          <li><a href="#" ng-controller="HomeController" ng-show="currentUser" ng-click="addEntryLink()">Add an Entry</a></li>
-          <li><a href="#" ng-controller="HomeController" ng-hide="currentUser" ng-click="login()"> Log In</a></li>
-          <li><a href="#" ng-controller="LogoutController" ng-show="currentUser" ng-click="logout()"> Log Out</a></li>
+          <li><a href="#" ng-controller="HomeController" ng-show="currentUser" ng-click="profileLink()" ng-cloak> My Profile</a></li>
+          <li><a href="#" ng-controller="HomeController" ng-show="currentUser" ng-click="addEntryLink()" ng-cloak>Add an Entry</a></li>
+          <li><a href="#" ng-controller="HomeController" ng-hide="currentUser" ng-click="login()" ng-cloak> Log In</a></li>
+          <li><a href="#" ng-controller="LogoutController" ng-show="currentUser" ng-click="logout()" ng-cloak> Log Out</a></li>
         </ul>
       </div>
 

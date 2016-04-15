@@ -1,8 +1,8 @@
-  <div id="profile-head" ng-init="profile.checkProfile()">
+  <div id="profile-head" ng-init="profile.checkProfile()" ng-cloak>
     <img class="profile-picture" ng-src="{{profile.confirmedUser.picture}}">
     <span id="welcome-message">Hi, {{profile.confirmedUser.name}}!</span>
   </div>
-  <div id="profile-div">
+  <div id="profile-div" ng-cloak>
 
     <div id="profile-about">
 
