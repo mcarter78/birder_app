@@ -145,7 +145,7 @@ function HomeController($scope, $http, $window) {
 function LoginController(auth, $state) {
   this.auth = auth;
   if(window.localStorage.profile){
-    $state.go('profile');
+    $window.location.href = '/profile';
   }
 }
 
