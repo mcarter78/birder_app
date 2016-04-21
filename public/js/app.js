@@ -36,12 +36,13 @@ function birdyConfig(authProvider, jwtInterceptorProvider, $httpProvider, $state
     loginState: 'login'
   });
 
-  authProvider.on('loginSuccess', function($location, profilePromise, idToken, store) {
+  authProvider.on('loginSuccess', function($location, profilePromise, idToken, store, $window) {
     profilePromise.then(function(profile) {
       store.set('profile', profile);
       store.set('token', idToken);
     });
     $location.path('/profile');
+    $window.location.href = '/profile';
   });
 
   // We're annotating this function so that the `store` is injected correctly when this file is minified
