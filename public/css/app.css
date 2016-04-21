@@ -433,9 +433,8 @@ a {
   display: block;
   background-color: #fc7b02;
   z-index: 999;
-
   clear: none;
-  text-align: left;
+  text-align: right;
 }
 
 #nav-menu ul {
@@ -451,6 +450,7 @@ a {
 
 #nav-menu ul li {
   height: 16%;
+  margin-right: 50px;
 }
 
 #hamburger {
