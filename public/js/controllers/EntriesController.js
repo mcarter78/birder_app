@@ -102,6 +102,10 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi, $state, $state
       places_changed : function (searchbox) {
                 var place = searchbox.getPlaces();
                 $scope.bird.city = place[0].formatted_address;
+                $scope.bird.coords = {
+                      latitude:place[0].geometry.location.lat(),
+                      longitude:place[0].geometry.location.lng()
+                };
                 $scope.map = {
                     center:{
                         latitude:place[0].geometry.location.lat(),
