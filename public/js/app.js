@@ -7,6 +7,7 @@ angular.module('birdy', ['ui.router', 'auth0', 'angular-storage', 'angular-jwt',
        .controller('ProfileController', ProfileController)
        .controller('PageslideController', PageslideController)
        .service('UserService', UserService)
+       .service('BirdService', BirdService)
        .config(birdyConfig)
        .run(function($rootScope, auth, store, jwtHelper, $location) {
          // This hooks al auth events to check everything as soon as the app starts
@@ -112,14 +113,10 @@ function birdyConfig(authProvider, jwtInterceptorProvider, $httpProvider, $state
   });
 }
 
-function HomeController($scope, $http, $window) {
-  $scope.allUsers = [];
-  $scope.getUsers = function() {
-    $http.get('/api/users')
-      .then(function(users) {
-        $scope.allUsers = users.data;
-      });
-  };
+function HomeController($scope, $http, $window, UserService, $rootScope) {
+  UserService.getUsers(function(users) {
+    $scope.allUsers = users;
+  });
   if(window.localStorage.profile){
     $scope.currentUser = JSON.parse(window.localStorage.profile);
   }
@@ -138,11 +135,9 @@ function HomeController($scope, $http, $window) {
   $scope.addEntryLink = function() {
     $window.location.href = '/entries/new';
   };
-
-  $scope.getUsers();
 }
 
-function LoginController(auth, $state, $window) {
+function LoginController(auth, $state, $window, $rootScope) {
   this.auth = auth;
   if(window.localStorage.profile){
     $window.location.href = '/profile';

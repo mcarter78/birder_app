@@ -50,7 +50,6 @@ function ProfileController($http, $state, uiGmapGoogleMapApi, $window, UserServi
         if(entry.coords) {
           marker.id = id;
           marker.coords = entry.coords;
-          console.log(marker.coords);
           vm.markers.push(marker);
           marker = {};
           id++;

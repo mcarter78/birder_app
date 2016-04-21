@@ -1,38 +1,24 @@
-function BirdsController($http) {
+function BirdsController(BirdService) {
   var vm = this;
   vm.allBirds = [];
-  vm.ticked = false;
-  vm.checkBox = function(bird) {
-    var currentUser = JSON.parse(window.localStorage.currentUser);
-    currentUser.entries.forEach(function(entry) {
-      if(bird.id === entry.birdId) {
-               console.log('true!', entry);
-               vm.ticked = true;
-             } else {
-               vm.ticked = false;
-             }
+  BirdService.getBirds(function(birds) {
+    birds.forEach(function(bird) {
+      var currentUser = JSON.parse(window.localStorage.currentUser);
+      currentUser.entries.forEach(function(entry) {
+        if(bird.id === entry.birdId) {
+          bird.ticked = true;
+        }
+      });
     });
-  };
-  // vm.checkBoxes = function(birds) {
-  //   birds.forEach(function(bird) {
-  //     var currentUser = JSON.parse(window.localStorage.currentUser);
-  //     currentUser.entries.forEach(function(entry) {
-  //       if(bird.id === entry.birdId) {
-  //         console.log('true!', entry);
-  //         bird.ticked = true;
-  //       } else {
-  //         bird.ticked = false;
-  //       }
-  //     });
-  //   });
-  // };
-  vm.getAll = function() {
+    vm.allBirds = birds;
+  });
+}
+
+function BirdService($http) {
+  this.getBirds = function(cb) {
     $http.get('/api/birds')
-      .then(function(res) {
-        vm.allBirds = res.data;
-        // vm.checkBoxes(vm.allBirds);
+      .success(function(res) {
+        return cb(res);
       });
   };
-  vm.getAll();
-
 }
