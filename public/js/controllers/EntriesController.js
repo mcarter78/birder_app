@@ -88,14 +88,14 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi, $state, $state
     uiGmapGoogleMapApi.then(function(maps) {
       $scope.map = {
         center: { latitude: 37.773972, longitude: -122.431297 },
-        zoom: 12
+        zoom: 2
        };
     });
   };
   $scope.marker = {
     id: 0,
     options:{ draggable:true },
-    coords: { latitude: 37.773972, longitude: -122.431297 },
+    coords: { latitude: 90, longitude: 108 },
    };
   $scope.searchbox = {
     events: {
