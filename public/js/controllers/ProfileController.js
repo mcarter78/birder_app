@@ -1,34 +1,22 @@
-function ProfileController($http, $state, uiGmapGoogleMapApi, $window) {
+function ProfileController($http, $state, uiGmapGoogleMapApi, $window, UserService) {
   var vm = this;
   vm.confirmedUser = {};
   vm.updatedUser = {};
   vm.markers = [];
-  if(window.localStorage.profile){
-    vm.user = JSON.parse(window.localStorage.profile);
-    vm.currentUser = {};
-    vm.currentUser.name = vm.user.name;
-    vm.currentUser.email = vm.user.email;
-    vm.currentUser.identities = vm.user.identities;
-    vm.currentUser.picture = vm.user.picture;
-  }
+  vm.allUsers = [];
   vm.checkProfile = function() {
-    $http.get('/api/users')
-      .then(function(res) {
-        console.log(res);
-        var matches = 0;
-        res.data.forEach(function(user) {
-          if (vm.user.name === user.name) {
-            console.log('user already exists');
-            matches += 1;
-            vm.confirmedUser = user;
-            window.localStorage.currentUser = JSON.stringify(user);
-          }
-        });
-        if (matches <= 0) {
-          vm.newProfile(vm.currentUser);
-          vm.checkProfile();
-        }
-      });
+    var matches = 0;
+    vm.allUsers.forEach(function(user) {
+      if (vm.user.name === user.name) {
+        matches += 1;
+        vm.confirmedUser = user;
+        window.localStorage.currentUser = JSON.stringify(user);
+      }
+    });
+    if (matches <= 0) {
+      vm.newProfile(vm.currentUser);
+      vm.checkProfile();
+    }
   };
   vm.newProfile = function(user) {
     $http.post('/api/users', user)
@@ -70,8 +58,27 @@ function ProfileController($http, $state, uiGmapGoogleMapApi, $window) {
       });
     }
   };
-  setTimeout(function() {
+  UserService.getUsers(function(users){
+    if(window.localStorage.profile){
+      vm.user = JSON.parse(window.localStorage.profile);
+      vm.currentUser = {};
+      vm.currentUser.name = vm.user.name;
+      vm.currentUser.email = vm.user.email;
+      vm.currentUser.identities = vm.user.identities;
+      vm.currentUser.picture = vm.user.picture;
+    }
+    vm.allUsers = users;
+    vm.checkProfile();
     vm.loadMap();
     vm.getMarkers();
-  }, 700);
+  });
+}
+
+function UserService($http) {
+  this.getUsers = function(cb) {
+    $http.get('/api/users')
+      .success(function(res) {
+        return cb(res);
+      });
+  };
 }

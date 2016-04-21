@@ -6,6 +6,7 @@ angular.module('birdy', ['ui.router', 'auth0', 'angular-storage', 'angular-jwt',
        .controller('EntriesController', EntriesController)
        .controller('ProfileController', ProfileController)
        .controller('PageslideController', PageslideController)
+       .service('UserService', UserService)
        .config(birdyConfig)
        .run(function($rootScope, auth, store, jwtHelper, $location) {
          // This hooks al auth events to check everything as soon as the app starts
