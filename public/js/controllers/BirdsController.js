@@ -3,12 +3,14 @@ function BirdsController(BirdService) {
   vm.allBirds = [];
   BirdService.getBirds(function(birds) {
     birds.forEach(function(bird) {
-      var currentUser = JSON.parse(window.localStorage.currentUser);
-      currentUser.entries.forEach(function(entry) {
-        if(bird.id === entry.birdId) {
-          bird.ticked = true;
-        }
-      });
+      if(window.localStorage.currentUser) {
+        var currentUser = JSON.parse(window.localStorage.currentUser);
+        currentUser.entries.forEach(function(entry) {
+          if(bird.id === entry.birdId) {
+            bird.ticked = true;
+          }
+        });
+      }
     });
     vm.allBirds = birds;
   });
