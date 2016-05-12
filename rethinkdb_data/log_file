@@ -141,3 +141,9 @@
 2016-04-20T21:28:31.774412000 3.450321s info: Table 058e5f50-1c2c-4c7b-8bcc-3c73877bfaeb: This server is Raft leader for term 7. Latest log index is 19.
 2016-04-20T21:28:31.899132000 3.575041s info: Table e115db59-5d53-49cb-886d-c3bd5f316a54: Starting a new Raft election for term 7.
 2016-04-20T21:28:31.925175000 3.601085s info: Table e115db59-5d53-49cb-886d-c3bd5f316a54: This server is Raft leader for term 7. Latest log index is 19.
+2016-04-25T20:30:55.899604000 172802.484463s notice: A newer version of the RethinkDB server is available: 2.3.1. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2016-04-28T12:50:15.504392000 259166.921855s notice: Server got SIGINT from pid 43220, uid 501; shutting down...
+2016-04-28T12:50:15.521720000 259166.939184s notice: Shutting down client connections...
+2016-04-28T12:50:15.530551000 259166.948015s notice: All client connections closed.
+2016-04-28T12:50:15.530658000 259166.948120s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2016-04-28T12:50:15.643783000 259167.061246s notice: Storage engine shut down.
