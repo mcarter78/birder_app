@@ -6,7 +6,7 @@ var express = require('express'),
     routes = require('./config/routes'),
     mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/birdspots');
+mongoose.connect('mongodb://heroku_qglsk5n8:96p6s4efgo9ekejnehpn1ecd7j@ds015334.mlab.com:15334/heroku_qglsk5n8');
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());

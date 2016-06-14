@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/birdspots');
+mongoose.connect('mongodb://heroku_qglsk5n8:96p6s4efgo9ekejnehpn1ecd7j@ds015334.mlab.com:15334/heroku_qglsk5n8');
 var Bird = require('../models/bird');
 
 var birds = [
