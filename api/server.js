@@ -3,7 +3,10 @@ var express = require('express'),
     logger = require('morgan'),
     bodyParser = require('body-parser'),
     port = process.env.PORT || 3000,
-    routes = require('./config/routes');
+    routes = require('./config/routes'),
+    mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/birdspots');
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());

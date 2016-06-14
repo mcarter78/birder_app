@@ -1,26 +1,28 @@
-function EntriesController($scope, $http, $q, uiGmapGoogleMapApi, $state, $stateParams){
+function EntriesController($scope, $http, $q, uiGmapGoogleMapApi, $state, $stateParams, BirdService){
   $scope.data = [];
   $scope.bird = {};
   $scope.entry = {};
   $scope.updatedEntry = {};
   $scope.currentUser = JSON.parse(window.localStorage.currentUser);
-  $scope.bird.userId = $scope.currentUser.id;
-  $scope.getAll = function() {
-    $http.get('/api/birds')
-      .then(function(res) {
-        res.data.forEach(function(bird) {
-          $scope.data.push(bird.commonName);
-        });
-      });
-  };
+  $scope.bird.userId = $scope.currentUser._id;
+  var input = document.getElementById('myinput');
+  BirdService.getBirds(function(birds) {
+    birds.forEach(function(bird) {
+      $scope.data.push(bird.commonName);
+    });
+    new Awesomplete(input, {
+      list: $scope.data
+    });
+  });
   $scope.getBird = function() {
+    $scope.selection = input.value;
     $scope.bird.name = $scope.selection;
     $http.get('/api/birds')
       .then(function(res) {
         res.data.forEach(function(bird) {
           if (bird.commonName === $scope.selection) {
-            $scope.bird.birdId = bird.id;
-            $scope.updatedEntry.id = bird.id;
+            $scope.bird.birdId = bird._id;
+            $scope.updatedEntry.id = bird._id;
             $scope.matchBird(bird);
 
           }
@@ -75,7 +77,8 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi, $state, $state
     uiGmapGoogleMapApi.then(function(maps) {
       $scope.showMap = {
         center: $scope.entry.coords,
-        zoom: 12
+        zoom: 12,
+        scrollwheel: false
        };
        $scope.showMarker =  {
          id: 0,
@@ -88,7 +91,8 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi, $state, $state
     uiGmapGoogleMapApi.then(function(maps) {
       $scope.map = {
         center: { latitude: 37.773972, longitude: -122.431297 },
-        zoom: 2
+        zoom: 2,
+        scrollwheel: false
        };
     });
   };
@@ -111,7 +115,8 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi, $state, $state
                         latitude:place[0].geometry.location.lat(),
                         longitude:place[0].geometry.location.lng()
                     },
-                    zoom: 12
+                    zoom: 12,
+                    scrollwheel: false
                 };
                 $scope.marker = {
                     id: 0,
@@ -132,5 +137,4 @@ function EntriesController($scope, $http, $q, uiGmapGoogleMapApi, $state, $state
     },
     position: 'top-right'
   };
-  $scope.getAll();
 }

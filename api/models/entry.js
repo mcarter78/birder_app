@@ -1,18 +1,19 @@
-var thinky = require('../db/config');
-var Bird = require('./bird');
-var User = require('./user');
+var mongoose = require('mongoose');
 
-var Entry = thinky.createModel('Entry', {
-  id: String,
+var Schema = mongoose.Schema;
+
+var EntrySchema = new Schema({
   userId: String,
   birdId: String,
+  name: String,
+  city: String,
+  picture: String,
+  coords: Array,
   location: String,
   date: Date,
   remarks: String
 });
 
-Entry.ensureIndex('date');
-
-Entry.hasOne(Bird, 'bird', 'birdId', 'id');
+var Entry = mongoose.model('Entry', EntrySchema);
 
 module.exports = Entry;

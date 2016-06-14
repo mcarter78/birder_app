@@ -1,6 +1,6 @@
   <div id="profile-head" ng-cloak>
-    <img class="profile-picture" ng-src="{{profile.confirmedUser.picture}}">
-    <span id="welcome-message">Hi, {{profile.confirmedUser.name}}!</span>
+    <img class="profile-picture" ng-src="{{profile.currentUser.picture}}">
+    <span id="welcome-message">Hi, {{profile.currentUser.name}}!</span>
   </div>
   <div id="profile-div" ng-cloak>
 
@@ -15,7 +15,7 @@
     </div>
 
     <div id="profile-add-entry-div">
-      <h4>Number of Entries: {{profile.confirmedUser.entries.length}} |
+      <h4>Number of Entries: {{profile.currentUser.entries.length}} |
         <span class="smaller-italic">Click on an entry in the list below to see its details.</span></h4>
       <button id="profile-add-entry" class="btn" ng-click="profile.entryRedirect()">Add Entry</button>
     </div>
@@ -39,7 +39,7 @@
 </div>
 <div id="profile-entries">
 
-  <div ng-repeat="entry in profile.confirmedUser.entries | orderBy:'-date'">
+  <div ng-repeat="entry in profile.currentUser.entries | orderBy:'-date'">
     <a ui-sref="show-entry({ userId: entry.userId, id: entry.id })">
       <img class="profile-picture" ng-src="{{ entry.picture }}">{{ entry.name }} | {{ entry.date | date }} | {{ entry.city }}
     </a>

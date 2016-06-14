@@ -233,6 +233,15 @@ label {
   border: 3px solid #777;
 }
 
+.awesomplete {
+  float: left;
+}
+
+#auto-input input {
+  height: 38px;
+  min-width: 300px;
+}
+
 #auto-input button {
   float: right;
   margin-right: 5px;

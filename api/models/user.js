@@ -1,20 +1,17 @@
-var thinky = require('../db/config');
-var Entry = require('./entry');
+var mongoose = require('mongoose');
+var EntrySchema = require('./entry').schema;
 
-var r = thinky.r;
+var Schema = mongoose.Schema;
 
-var User = thinky.createModel('User', {
-  id: String,
+var UserSchema = new Schema({
   name: String,
   email: String,
   picture: String,
   aboutMe: String,
-  date: { _type: Date, default: r.now() },
-  entries: { _type: Array, default: []}
+  date: { type: Date, default: Date.now() },
+  entries: [EntrySchema]
 });
 
-User.ensureIndex('date');
-
-User.hasMany(Entry, 'entries', 'id', 'userId');
+var User = mongoose.model('User', UserSchema);
 
 module.exports = User;

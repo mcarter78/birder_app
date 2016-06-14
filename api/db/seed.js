@@ -1,6 +1,5 @@
-var thinky = require('../db/config');
-var r = thinky.r;
-
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/birdspots');
 var Bird = require('../models/bird');
 
 var birds = [
@@ -22697,12 +22696,12 @@ var birds = [
 ];
 
 function seedBirds (arr) {
-  Bird.delete().run()
-  .then(function(){
-    Bird.save(arr)
-      .then(function() {
-        console.log(arr.length, "birds created");
+  Bird.find({}, function(err, birds) {
+    Bird.remove(birds, function(err, data) {
+      Bird.create(arr, function(err, newBirds) {
+        console.log(arr.length, 'birds created');
       });
+    });
   });
 }
 

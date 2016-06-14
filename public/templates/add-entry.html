@@ -1,12 +1,17 @@
 <h2>Add Entry:</h2>
 <div id="auto-input">
-  <autocomplete
+  <!-- <autocomplete
     attr-input-id="bird-search"
     data="data"
     ng-model="selection"
     attr-placeholder="Enter Bird Common Name..."
     autofocus>
-  </autocomplete>
+  </autocomplete> -->
+  <!-- <md-autocomplete md-selected-item="selection" md-search-text="selection" md-items="item.commonName in data" md-item-text="item.commonName.display">
+    <span md-highlight-text="selection">{{item.commonName.display}}</span>
+  </md-autocomplete> -->
+  <input id="myinput" ng-model="selection" />
+
   <button class="btn" ng-click="getBird(); showMe=true">Select</button>
 </div>
 <div class="right-div" ng-show="showMe" id="selected-bird">

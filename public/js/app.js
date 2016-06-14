@@ -1,4 +1,4 @@
-angular.module('birdy', ['ui.router', 'auth0', 'angular-storage', 'angular-jwt', 'autocomplete', 'uiGmapgoogle-maps'])
+angular.module('birdy', ['ui.router', 'auth0', 'angular-storage', 'angular-jwt', 'autocomplete', 'uiGmapgoogle-maps', 'ngMaterial'])
        .controller('HomeController', HomeController)
        .controller('LoginController', LoginController)
        .controller('LogoutController', LogoutController)

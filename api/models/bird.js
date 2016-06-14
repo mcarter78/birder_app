@@ -1,14 +1,15 @@
-var thinky = require('../db/config');
+var mongoose = require('mongoose');
 
-var Bird = thinky.createModel('Bird', {
-  id: String,
-  sci_name: String,
-  common_name: String,
-  order_name: String,
+var Schema = mongoose.Schema;
+
+var BirdSchema = new Schema({
+  sciName: String,
+  commonName: String,
+  orderName: String,
   birdImageUrl: String,
   timesSeen: Number
 });
 
-Bird.ensureIndex('orderName');
+var Bird = mongoose.model('Bird', BirdSchema);
 
 module.exports = Bird;
