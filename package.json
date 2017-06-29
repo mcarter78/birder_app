@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "precommit": "node node_modules/eslint/bin/eslint.js src"
   },
   "author": "Matt Carter",
   "license": "ISC",
@@ -29,8 +30,9 @@
     "cookie-parser": "^1.4.3",
     "css-loader": "0.28.4",
     "dotenv": "4.0.0",
+    "enzyme": "^2.7.1",
     "eslint": "3.19.0",
-    "eslint-config-react-app": "^1.0.5",
+    "eslint-config-airbnb": "^14.1.0",
     "eslint-loader": "1.7.1",
     "eslint-plugin-flowtype": "2.34.0",
     "eslint-plugin-import": "2.2.0",
@@ -42,6 +44,7 @@
     "file-loader": "0.11.2",
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
+    "husky": "^0.13.1",
     "jest": "20.0.4",
     "mongoose": "^4.5.0",
     "morgan": "^1.7.0",
@@ -55,9 +58,13 @@
     "postcss-loader": "2.0.6",
     "promise": "7.1.1",
     "react": "^15.6.1",
+    "react-bootstrap": "^0.30.7",
     "react-dev-utils": "^3.0.2",
     "react-dom": "^15.6.1",
+    "react-redux": "^5.0.2",
+    "react-router": "^3.0.2",
     "react-error-overlay": "^1.0.9",
+    "redux": "^3.6.0",
     "style-loader": "0.18.2",
     "sw-precache-webpack-plugin": "0.11.3",
     "url-loader": "0.5.9",
@@ -104,6 +111,22 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "airbnb",
+    "rules": {
+      "class-methods-use-this": 0,
+      "comma-dangle": 0,
+      "no-console": 0,
+      "no-param-reassign": 0,
+      "no-shadow": 0,
+      "no-undef": 0,
+      "no-use-before-define": 0,
+      "import/no-named-as-default-member": 0,
+      "import/prefer-default-export": 0,
+      "jsx-a11y/href-no-hash": 0,
+      "jsx-a11y/img-has-alt": 0,
+      "react/forbid-prop-types": 0,
+      "react/jsx-filename-extension": 0,
+      "react/prefer-stateless-function": 0
+    }
   }
 }
