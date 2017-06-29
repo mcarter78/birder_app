@@ -4,12 +4,19 @@
   "description": "Birdwatching journal",
   "main": "api/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node api/server.js"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "author": "Matt Carter",
   "license": "ISC",
+  "devDependencies": {
+    "react-scripts": "1.0.10"
+  },
   "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "angucomplete-alt": "^2.4.1",
     "bcrypt": "^1.0.2",
     "bluebird": "^3.3.5",
