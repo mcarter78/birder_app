@@ -5,7 +5,11 @@ var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
   name: String,
-  email: String,
+  email: { type: String, required: true },
+  password: { type: String, required: true },
+  salt: { type: String, required: true },
+  googleId: String,
+  facebookId: String,
   picture: String,
   aboutMe: String,
   date: { type: Date, default: Date.now() },

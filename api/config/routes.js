@@ -1,9 +1,37 @@
 var express = require('express'),
     router = express.Router(),
     path = require('path'),
+    passport = require('passport');
     usersController = require('../controllers/usersController'),
     birdsController = require('../controllers/birdsController'),
     entriesController = require('../controllers/entriesController');
+
+router.post('/api/login', passport.authenticate('local'), function(req, res) {
+    var account = req.user;
+    accountsController.getAccounts(account, function(acct) {
+      res.json(acct);
+    });
+  });
+
+  router.get('/api/google', passport.authenticate('google', {
+    scope:['profile','email']
+  }));
+
+  router.get('/oauth/google',
+    passport.authenticate('google', {failureRedirect: '/'}), function(req, res) {
+      // Successful Authentication
+      res.redirect('/profile');
+    });
+
+  router.get('/api/auth/facebook', passport.authenticate('facebook'));
+
+  router.get('/oauth/facebook',
+    passport.authenticate('facebook', {failureRedirect: '/login'}),
+    function(req, res) {
+      // Successful Authentication
+      var user = req;
+      res.json(user);
+    });
 
 router.route('/getBirdImage')
   .post(birdsController.getBirdImage);
