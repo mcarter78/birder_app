@@ -6,9 +6,7 @@ import Profile from '../Components/Profile';
 // const wrapper = shallow(<Profile />);
 
 describe('Profile Component tests:', () => {
-
   it('renders without crashing', () => {
     shallow(<Profile />);
   });
-
 });

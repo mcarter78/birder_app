@@ -6,9 +6,7 @@ import App from '../App';
 // const wrapper = shallow(<App />);
 
 describe('App Component tests:', () => {
-
   it('renders without crashing', () => {
     shallow(<App />);
   });
-
 });

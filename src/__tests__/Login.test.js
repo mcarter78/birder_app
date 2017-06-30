@@ -6,9 +6,7 @@ import Login from '../Components/Login';
 // const wrapper = shallow(<Login />);
 
 describe('Login Component tests:', () => {
-
   it('renders without crashing', () => {
     shallow(<Login />);
   });
-
 });
