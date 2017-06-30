@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-var express = require('express'),
+const express = require('express'),
     app = express(),
     logger = require('morgan'),
     bodyParser = require('body-parser'),
@@ -18,9 +18,9 @@ var express = require('express'),
 // Dev database URI
 mongoose.connect('mongodb://localhost/birdspots');
 
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({ extended:true }));
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/../public'));
+app.use(express.static(__dirname + '/../build'));
 app.use(logger('dev'));
 app.use(routes);
 

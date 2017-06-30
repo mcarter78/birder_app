@@ -11,7 +11,9 @@
   },
   "author": "Matt Carter",
   "license": "ISC",
-  "devDependencies": {},
+  "devDependencies": {
+    "react-test-renderer": "^15.6.1"
+  },
   "dependencies": {
     "angucomplete-alt": "^2.4.1",
     "autoprefixer": "7.1.1",
@@ -61,10 +63,11 @@
     "react-bootstrap": "^0.30.7",
     "react-dev-utils": "^3.0.2",
     "react-dom": "^15.6.1",
+    "react-error-overlay": "^1.0.9",
     "react-redux": "^5.0.2",
     "react-router": "^3.0.2",
-    "react-error-overlay": "^1.0.9",
     "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
     "style-loader": "0.18.2",
     "sw-precache-webpack-plugin": "0.11.3",
     "url-loader": "0.5.9",
@@ -74,9 +77,15 @@
     "whatwg-fetch": "2.0.3"
   },
   "jest": {
+    "collectCoverage": true,
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
+      "**/src/**/*.{js,jsx}"
     ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/index.js",
+      "<rootDir>/src/registerServiceWorker.js"
+    ],
+    "coverageDirectory": "<rootDir>/coverage",
     "setupFiles": [
       "<rootDir>/config/polyfills.js"
     ],

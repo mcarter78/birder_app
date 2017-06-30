@@ -1,37 +1,42 @@
-var express = require('express'),
-    router = express.Router(),
-    path = require('path'),
-    passport = require('passport');
-    usersController = require('../controllers/usersController'),
-    birdsController = require('../controllers/birdsController'),
-    entriesController = require('../controllers/entriesController');
+const express = require('express'),
+      router = express.Router(),
+      path = require('path'),
+      passport = require('passport');
+      usersController = require('../controllers/usersController'),
+      birdsController = require('../controllers/birdsController'),
+      entriesController = require('../controllers/entriesController');
 
-router.post('/api/login', passport.authenticate('local'), function(req, res) {
-    var account = req.user;
-    accountsController.getAccounts(account, function(acct) {
-      res.json(acct);
-    });
+router.route('/')
+  .get(function(req, res) {
+    res.sendFile(path.join(__dirname + '/../../build/index.html'));
   });
 
-  router.get('/api/google', passport.authenticate('google', {
-    scope:['profile','email']
-  }));
+router.post('/api/login', passport.authenticate('local'), function(req, res) {
+  const account = req.user;
+  accountsController.getAccounts(account, function(acct) {
+    res.json(acct);
+  });
+});
 
-  router.get('/oauth/google',
-    passport.authenticate('google', {failureRedirect: '/'}), function(req, res) {
-      // Successful Authentication
-      res.redirect('/profile');
-    });
+router.get('/api/google', passport.authenticate('google', {
+  scope:['profile','email']
+}));
 
-  router.get('/api/auth/facebook', passport.authenticate('facebook'));
+router.get('/oauth/google',
+  passport.authenticate('google', {failureRedirect: '/'}), function(req, res) {
+    // Successful Authentication
+    res.redirect('/profile');
+});
 
-  router.get('/oauth/facebook',
-    passport.authenticate('facebook', {failureRedirect: '/login'}),
+router.get('/api/auth/facebook', passport.authenticate('facebook'));
+
+router.get('/oauth/facebook',
+  passport.authenticate('facebook', {failureRedirect: '/login'}),
     function(req, res) {
       // Successful Authentication
       var user = req;
       res.json(user);
-    });
+});
 
 router.route('/getBirdImage')
   .post(birdsController.getBirdImage);
@@ -61,10 +66,5 @@ router.route('/api/users/:id/entries/:id')
   .get(entriesController.show)
   .patch(entriesController.update) // WORKING
   .delete(entriesController.delete); // WORKING
-
-router.route('*')
-  .get(function(req, res) {
-    res.sendFile(path.join(__dirname + '/../../views/index.html'));
-  });
 
 module.exports = router;
