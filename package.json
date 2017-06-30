@@ -112,7 +112,8 @@
       "json",
       "web.jsx",
       "jsx"
-    ]
+    ],
+    "verbose": true
   },
   "babel": {
     "presets": [

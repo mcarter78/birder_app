@@ -5,6 +5,10 @@ import Profile from '../Components/Profile';
 // Use later
 // const wrapper = shallow(<Profile />);
 
-it('renders without crashing', () => {
-  shallow(<Profile />);
+describe('Profile Component tests:', () => {
+
+  it('renders without crashing', () => {
+    shallow(<Profile />);
+  });
+
 });

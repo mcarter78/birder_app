@@ -5,6 +5,10 @@ import App from '../App';
 // use later
 // const wrapper = shallow(<App />);
 
-it('renders without crashing', () => {
-  shallow(<App />);
+describe('App Component tests:', () => {
+
+  it('renders without crashing', () => {
+    shallow(<App />);
+  });
+
 });
