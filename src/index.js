@@ -7,8 +7,8 @@ import ReactDOM from 'react-dom';
 import { Router, Route, IndexRedirect, browserHistory } from 'react-router';
 import './index.css';
 import App from './App';
-import Profile from './Components/Profile';
-import Login from './Components/Login';
+import Profile from './Components/User/Profile';
+import Login from './Components/User/Login';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(

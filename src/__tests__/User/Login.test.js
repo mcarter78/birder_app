@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Login from '../Components/Login';
+import Login from '../../Components/User/Login';
 
 // use later
 // const wrapper = shallow(<Login />);

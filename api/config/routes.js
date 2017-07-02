@@ -6,6 +6,8 @@ const express = require('express'),
       birdsController = require('../controllers/birdsController'),
       entriesController = require('../controllers/entriesController');
 
+// TODO: ADD AUTHENTICATION FOR ROUTES, GRAB FROM SHOWDEO
+
 router.route('/')
   .get(function(req, res) {
     res.sendFile(path.join(__dirname + '/../../build/index.html'));
@@ -14,6 +16,7 @@ router.route('/')
 router.post('/api/login', passport.authenticate('local'), function(req, res) {
   const account = req.user;
   accountsController.getAccounts(account, function(acct) {
+    // TODO: ONLY SEND BACK SAFE DATA -- NO PASSWORD/SALT
     res.json(acct);
   });
 });
@@ -35,6 +38,7 @@ router.get('/oauth/facebook',
     function(req, res) {
       // Successful Authentication
       var user = req;
+      // TODO: ONLY SEND BACK SAFE DATA -- NO PASSWORD/SALT
       res.json(user);
 });
 
