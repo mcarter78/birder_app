@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
+    <meta name="google-signin-client_id" content="699926174395-saamanneajmdgv61s93qirkk4qn37nkc.apps.googleusercontent.com">
     <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
@@ -20,11 +21,19 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Birdspots</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   </head>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
+    <!-- Code required for 'Continue with Facebook' button -->
+    <div id="fb-root"></div>
+    <script type="text/javascript" src="http://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=1696176944004794"></script>
+    <!-- Code required for 'Sign in with Google' button -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
     <div id="root"></div>
     <!--
       This HTML file is a template.
@@ -37,4 +46,5 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+
 </html>

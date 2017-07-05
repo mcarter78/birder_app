@@ -1,24 +1,22 @@
 .App {
+  font-family: "EB Garamond", serif;
+  color: rgba(119, 119, 119, 0.7);
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+input:focus {
+  outline: 0
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.button {
+  color: #fff;
+  background-color: rgba(119, 119, 119, 0.7);
 }
 
-.App-intro {
-  font-size: large;
+.button:hover {
+  background-color: #008000;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.abcRioButton {
+  margin: 0 auto;
 }
