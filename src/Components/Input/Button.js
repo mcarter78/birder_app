@@ -21,14 +21,15 @@ class Button extends Component {
         style={styles.button}
         onClick={this.props.click}
         value={this.props.val}
-      />
+        disabled={this.props.btnDisabled} />
     );
   }
 }
 
 Button.propTypes = {
   click: PropTypes.func.isRequired,
-  val: PropTypes.string.isRequired
+  val: PropTypes.string.isRequired,
+  btnDisabled: PropTypes.bool.isRequired
 };
 
 export default Button;

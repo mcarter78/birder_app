@@ -24,23 +24,25 @@ const styles = {
     width: '254px',
     height: '50px'
   },
-  signup: {
+  login: {
     clear: 'both'
   }
 };
 
-class Login extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
     // Set initial component state
     this.state = {
       credentials: {
         email: '',
-        password: ''
+        password: '',
+        confirmPassword: ''
       },
-      formErrors: { email: '', password: '' },
+      formErrors: { email: '', password: '', confirmPassword: '' },
       emailValid: false,
       passwordValid: false,
+      confirmPasswordValid: false,
       formValid: false
     };
     this.onChange = this.onChange.bind(this);
@@ -66,13 +68,15 @@ class Login extends Component {
   onSubmit(event) {
     // Prevent reload on submit
     event.preventDefault();
-    // call the logInUser function, passing the credentials
+    // TODO: Sign up the user
+    // If successful, call the logInUser function, passing the credentials
     this.props.actions.logInUser(this.state.credentials);
   }
   validateField(fieldName, value) {
     const fieldValidationErrors = this.state.formErrors;
     let emailValid = this.state.emailValid;
     let passwordValid = this.state.passwordValid;
+    let confirmPasswordValid = this.state.confirmPasswordValid;
     switch (fieldName) {
       case 'email':
         emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
@@ -82,17 +86,23 @@ class Login extends Component {
         passwordValid = value.length >= 6;
         fieldValidationErrors.password = passwordValid ? '' : ' must be at least 6 characters';
         break;
+      case 'confirmPassword':
+        confirmPasswordValid = value === this.state.credentials.password;
+        fieldValidationErrors.confirmPassword = confirmPasswordValid ? '' : ' must match password';
+        break;
       default:
         break;
     }
     this.setState({
       formErrors: fieldValidationErrors,
       emailValid,
-      passwordValid
+      passwordValid,
+      confirmPasswordValid
     }, this.validateForm);
   }
   validateForm() {
-    this.setState({ formValid: this.state.emailValid && this.state.passwordValid });
+    this.setState({ formValid: this.state.emailValid && this.state.passwordValid &&
+       this.state.confirmPasswordValid });
   }
   render() {
     return (
@@ -101,32 +111,41 @@ class Login extends Component {
         mdOffset={3}
         style={styles.outerCol}>
         <div
-          className="login-component"
-          style={styles.login}>
-          <h2>Log In</h2>
+          className="login-component">
+          <h2>Sign Up</h2>
           <Col
             md={6}
             sm={12}
             xs={12}
             style={styles.innerCol}>
-            <FormInput
-              inputName="email"
-              inputType="email"
-              val={this.state.credentials.email}
-              keyPress={this.onEnter}
-              change={this.onChange}
-              defaultText="Email" />
-            <FormInput
-              inputName="password"
-              inputType="password"
-              val={this.state.credentials.password}
-              keyPress={this.onEnter}
-              change={this.onChange}
-              defaultText="Password" />
-            <Button
-              click={this.onSubmit}
-              btnDisabled={!this.state.formValid}
-              val="Log In" />
+            <form>
+              <FormInput
+                inputName="email"
+                inputType="email"
+                val={this.state.credentials.email}
+                keyPress={this.onEnter}
+                change={this.onChange}
+                defaultText="Email" />
+              <FormInput
+                inputName="password"
+                inputType="password"
+                val={this.state.credentials.password}
+                keyPress={this.onEnter}
+                change={this.onChange}
+                defaultText="Password" />
+              <FormInput
+                inputName="confirmPassword"
+                inputType="password"
+                val={this.state.credentials.confirmPassword}
+                keyPress={this.onEnter}
+                change={this.onChange}
+                req={true}
+                defaultText="Confirm Password" />
+              <Button
+                click={this.onSubmit}
+                btnDisabled={!this.state.formValid}
+                val="Sign Up" />
+            </form>
           </Col>
           <Col
             md={6}
@@ -161,10 +180,11 @@ class Login extends Component {
               data-longtitle="true"
               data-onsuccess="onSignIn" /> */}
           </Col>
-          <p style={styles.signup}>
-            Don&#39;t have an account&#63;&#32;<Link to="/signup">Sign up now&#33;</Link>
+          <p style={styles.login}>
+            Already have an account&#63;&#32;<Link to="/login">Log in now&#33;</Link>
           </p>
-          {(this.state.formErrors.email !== '' || this.state.formErrors.password !== '') ?
+          {(this.state.formErrors.email !== '' || this.state.formErrors.password !== '' ||
+            this.state.formErrors.confirmPassword) ?
             (<FormErrors formErrors={this.state.formErrors} />) : (null)
           }
         </div>
@@ -173,7 +193,7 @@ class Login extends Component {
   }
 }
 
-Login.propTypes = {
+Signup.propTypes = {
   actions: PropTypes.object.isRequired
 };
 
@@ -183,4 +203,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Signup);

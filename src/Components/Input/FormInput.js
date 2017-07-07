@@ -24,8 +24,7 @@ class FormInput extends Component {
         onChange={this.props.change}
         onKeyPress={this.props.keyPress}
         value={this.props.val}
-        placeholder={this.props.defaultText}
-      />
+        placeholder={this.props.defaultText} />
     );
   }
 }

@@ -8,6 +8,7 @@ import './index.css';
 import App from './App';
 import Profile from './Components/User/Profile';
 import Login from './Components/User/Login';
+import Signup from './Components/User/Signup';
 import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './reducers/rootReducer';
 
@@ -31,6 +32,7 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <Route path="/profile" onEnter={requireAuth} component={Profile} />
         <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
       </Route>
     </Router>
   </Provider>
