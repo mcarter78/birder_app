@@ -48,6 +48,7 @@
     "html-webpack-plugin": "2.29.0",
     "husky": "^0.13.1",
     "jest": "20.0.4",
+    "jsonwebtoken": "^7.4.1",
     "mongoose": "^4.5.0",
     "morgan": "^1.7.0",
     "node-flickr": "^1.0.0",
@@ -55,6 +56,7 @@
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth20": "^1.0.0",
+    "passport-jwt": "^2.2.1",
     "passport-local": "^1.0.0",
     "postcss-flexbugs-fixes": "3.0.0",
     "postcss-loader": "2.0.6",
@@ -91,8 +93,10 @@
       "<rootDir>/config/polyfills.js"
     ],
     "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.js?(x)",
-      "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
+      "**/src/__tests__/**/*.js?(x)",
+      "**/src/__tests__/Input/*.js?(x)",
+      "**/src/__tests__/Entry/*.js?(x)",
+      "**/src/__tests__/User/*.js?(x)"
     ],
     "testEnvironment": "node",
     "testURL": "http://localhost",
@@ -124,8 +128,10 @@
   "eslintConfig": {
     "extends": "airbnb",
     "rules": {
+      "arrow-body-style": 0,
       "class-methods-use-this": 0,
       "comma-dangle": 0,
+      "no-else-return": 0,
       "no-console": 0,
       "no-param-reassign": 0,
       "no-shadow": 0,
@@ -136,6 +142,7 @@
       "jsx-a11y/href-no-hash": 0,
       "jsx-a11y/img-has-alt": 0,
       "react/forbid-prop-types": 0,
+      "react/jsx-closing-bracket-location": 0,
       "react/jsx-filename-extension": 0,
       "react/prefer-stateless-function": 0,
       "react/self-closing-comp": 0

@@ -1,7 +1,8 @@
 const express = require('express'),
       router = express.Router(),
       path = require('path'),
-      passport = require('passport');
+      passport = require('passport'),
+      jwt = require('jsonwebtoken'),
       usersController = require('../controllers/usersController'),
       birdsController = require('../controllers/birdsController'),
       entriesController = require('../controllers/entriesController');
@@ -13,16 +14,30 @@ router.route('/')
     res.sendFile(path.join(__dirname + '/../../build/index.html'));
   });
 
-router.post('/api/login', passport.authenticate('local'), function(req, res) {
-  const account = req.user;
-  accountsController.getAccounts(account, function(acct) {
-    // TODO: ONLY SEND BACK SAFE DATA -- NO PASSWORD/SALT
-    res.json(acct);
+router.post('/api/login', passport.authenticate('local'),
+  (req, res) => {
+    console.log(req.user);
+    const payload = { id: req.user.id };
+    const token = jwt.sign(payload, process.env.JWT_SECRET);
+    const response = {
+      message: 'login ok',
+      user: {
+        email: req.user.email
+      },
+      token
+    };
+    res.json(response);
   });
-});
+
+// Route to test JWT
+router.get('/secret', passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    res.json('Success!');
+  });
+
 
 router.get('/api/google', passport.authenticate('google', {
-  scope:['profile','email']
+  scope: ['profile', 'email']
 }));
 
 router.get('/oauth/google',

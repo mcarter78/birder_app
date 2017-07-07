@@ -2,28 +2,43 @@ var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     GoogleStrategy = require('passport-google-oauth20'),
     FacebookStrategy = require('passport-facebook'),
+    JwtStrategy = require('passport-jwt').Strategy,
+    ExtractJwt = require('passport-jwt').ExtractJwt,
     bcrypt = require('bcrypt'),
     User = require('./models/user');
+
+let jwtOptions = {};
+jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
+jwtOptions.secretOrKey = process.env.JWT_SECRET;
 
 module.exports = function(app) {
   app.use(passport.initialize());
   app.use(passport.session());
 
+  passport.use(new JwtStrategy(jwtOptions,
+    function(jwt_payload, done) {
+      console.log('payload received', jwt_payload);
+      User.findById(jwt_payload.id, (err, user) => {
+        console.log(user);
+        if (user === null) {
+          return done(null, false, { message: 'Incorrect credentials.' });
+        }
+        return done(null, user);
+      });
+    }
+  ));
+
   passport.use(new LocalStrategy(
     function(email, password, done) {
-      User.find({'email': email})
-        .then(function (user) {
-          if (user === null) {
-            return done(null, false, { message: 'Incorrect credentials.' });
-          }
-
+      User.findOne({ email: email }, (err, user) => {
+        if (user === null) {
+          return done(null, false, { message: 'Incorrect credentials.' });
+        }
         var hashedPassword = bcrypt.hashSync(password, user.salt);
-
         if (user.password === hashedPassword) {
           console.log('user authenticated');
           return done(null, user);
         }
-
         return done(null, false, { message: 'Incorrect credentials.' });
       });
     }
@@ -48,13 +63,13 @@ module.exports = function(app) {
         salt: salt,
         password: hashedPassword
       };
-      User.find({ email: account.email }, (_account) => {
+      User.findOne({ email: account.email }, (_account) => {
         if (_account) {
           _account.update({ googleId: profile.id }).then(function(updAccount) {
             return cb(null, updAccount);
           });
         } else {
-          User.find({ googleId: profile.id }, (acct) => {
+          User.findOne({ googleId: profile.id }, (acct) => {
             if (acct) {
               return cb(null, acct);
             } else {
@@ -86,14 +101,14 @@ module.exports = function(app) {
         salt: salt,
         password: hashedPassword
       };
-      User.find({ email: account.email })
+      User.findOne({ email: account.email })
         .then(function(_account) {
           if(_account) {
             _account.update({ facebookId: profile.id }).then(function(updAccount) {
               return cb(null, updAccount);
             });
           } else {
-            User.find({ facebookId: profile.id })
+            User.findOne({ facebookId: profile.id })
               .then(function(acct) {
                 if(acct) {
                   return cb(null, acct);
